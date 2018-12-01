@@ -1,0 +1,41 @@
+#admin{
+
+background-color:rgba(0,0,0,0.2);
+    height:400px;
+    display:flex;
+   
+}
+
+#tools{
+    position:absolute;
+    left:0;
+    width:15%;
+    background:rgba(0,0,0,0.7)
+    
+}
+
+#visuel{
+    
+    background-color:floralwhite;
+    width:75%;
+    margin-left:20%;
+    height:100px;
+    
+}
+
+ul{
+    list-style-type: none;
+    
+}
+li{
+     padding:20px 0;
+}
+
+a{
+        text-decoration:none;
+    font-size:1.6em;
+        color:white;
+   
+
+
+}

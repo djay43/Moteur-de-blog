@@ -1,0 +1,68 @@
+footer{
+    height:200px;
+    background-color:rgba(0,0,0,0.6);
+    margin-top:50px;
+}
+
+header{
+   
+    margin:0;
+    background-color:rgba(0,0,0,0.6);
+    color:white;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+}
+header h1{
+    margin:auto;
+}
+header a{
+    text-decoration: none;
+    margin:auto;
+    color:white;
+}
+html,body{
+    margin:0;
+    padding:0;
+}
+
+section{
+    display:flex;
+    flex-direction: column;
+    margin-top:50px;
+}
+#main_content{
+    margin:auto;
+    padding:30px;
+    width:90%;
+    background-color:cornsilk;
+    display:flex;
+    flex-direction: column;
+    
+}
+
+#last_episodes_content{
+    display:flex;
+    justify-content: space-around;
+    margin:auto;
+    margin-top:30px;
+    width:90%;
+    
+    
+}
+.last_post{
+    
+    width:30%;
+    height:200px;
+    background-color:cornsilk;
+    padding:10px;
+    overflow: hidden;
+
+    
+}
+
+#last_less1,#last_less2, #last_less3{
+    margin:10px;
+    height:180px;
+    overflow: hidden;
+}

@@ -17,6 +17,6 @@
         
     </header>
     <body>
-        <p>Je m'identifie</p>
+        <?= $content ?>
     </body>
 </html>

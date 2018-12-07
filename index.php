@@ -31,6 +31,15 @@ if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
 if ($_GET['action']=='authentification'){
 	require ('view/frontend/authentification.php');
 }
+
+if ($_GET['action']=="alert"){
+
+				alert($_GET['id']);
+			
+				post($_GET['post_id']);
+
+	}
+
 }
 else{
 

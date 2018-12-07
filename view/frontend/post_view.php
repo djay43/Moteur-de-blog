@@ -9,11 +9,20 @@ ob_start(); ?>
                 <h3>Dernière publication:</h3>
                
                       
+                        <h5> <?= $post['title'];?> </h5>
+                        <p><?= $post['post_content']; ?></p>
+                        <p>Posté le <?= $post['post_date_fr'];?></p> 
            </article>
            
            <aside id="comments">
                       <h3>Commentaires</h3>
-                          
+                          <?php while ($comment=$comments->fetch()){ ?>
+
+                      <h5> <?= $comment['author'];?></h5>
+                      <p> <?= $comment['comment'];?></p>
+                      <p> <?= $comment['comment_date_fr'];?></p>
+                      <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= $comment['post_id'] ?>"> Signaler</a><br/><br/><br/>
+                        <?php } ?>
 
                         <form action="index.php?action=new_comment&amp;id=<?= $post['id'] ?>" method="post">
                           <div>

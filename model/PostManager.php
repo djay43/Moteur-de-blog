@@ -4,10 +4,18 @@ require_once("Manager.php");
 class PostManager extends Manager{
 
 
+    public function all_posts(){
+
+            $bdd=$this->base_connect();
+            $sql=$bdd->query('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM posts ORDER BY id DESC');            
+            
+            return $sql;
+
+    }
     public function get_post($post_id){
 
             $bdd=$this->base_connect();
-            $sql=$bdd->prepare('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr FROM posts WHERE id=?');
+            $sql=$bdd->prepare('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract FROM posts WHERE id=?');
             $sql->execute (array($post_id));
             $post=$sql->fetch();
             return $post;
@@ -21,7 +29,20 @@ class PostManager extends Manager{
             return $sql;
 }
 
+    public function delete_post ($checkId){
 
+            $bdd=$this->base_connect();
+            $sql=$bdd->prepare('DELETE FROM `posts` WHERE id=?');
+            $sql->execute (array($checkId));
+            return $sql;
+    }
+
+    public function edit_post ($post_id, $title, $post_content, $extract){
+
+        $bdd=$this->base_connect();
+        $sql=$bdd->prepare('UPDATE posts SET title = ?, post_content = ?, extract = ? WHERE id = ?');
+        $sql->execute (array($title, $post_content, $extract, $post_id));
+    }
 
 }	
 

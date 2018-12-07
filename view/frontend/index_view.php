@@ -14,7 +14,6 @@
         <a href="./index.php?action=authentification">S'identifier</a>
 
         
-        
     </header>
     
     <body>

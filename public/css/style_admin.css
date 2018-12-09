@@ -5,21 +5,19 @@ background-color:rgba(0,0,0,0.2);
    
 }
 
-#tools{
-    position:absolute;
-    left:0;
-    width:15%;
-    background:rgba(0,0,0,0.7)
-    
-}
+
 
 #visuel{
     
-    background-color:floralwhite;
-    width:75%;
-    margin-left:20%;
+    background-color:#A5A5AC;
+    width:90%;
+    margin:115px auto;
     padding:10px;
-    
+    border-radius:10px;
+    position:relative;
+    z-index:20;
+
+
 }
 
 ul{
@@ -31,22 +29,42 @@ li{
 }
 
 a{
-        text-decoration:none;
+    text-decoration:none;
     font-size:1.6em;
-        color:white;
+    color:white;
+}
+#tools nav ul{
+    display:flex;
+    position:absolute;
+    right:90px;
+}
+#tools li{
+
+        background-color:#A5A5AC;
+        padding:15px 15px 15px 15px;
+        border-radius:5px;
+        margin-right:10px;
+
+
+}
+#tools li:hover{
+    background:#7C7C81;
 }
 
-
 #read_view{
-    margin: 20px 0;
-    background:grey;
-    display:block;
-    padding:50px;
+    position:relative;
+    margin:auto; 
+    background:rgba(255,255,255,0.8);
+    display:flex;
+    padding:10px;
+    margin: 10px 0;
+    height:80px;
 }
 
 #alert{
 
-    background-color: rgba(255,0,0,0.5);
+    background-color: rgba(255,0,0,0.6);
+    border-radius:10px;
     display:block;
     padding: 20px;
     margin: 20px 0;
@@ -58,4 +76,42 @@ a{
     background:grey;
     display:block;
     padding:10px;
+}
+
+#extract{
+    text-align: left;
+    border-left:solid 1px black;
+    width:300px;
+
+}
+
+#read_view p{
+    margin:0 110px;
+
+}
+#read_view h5{
+    position:absolute;
+    top:20%;
+}
+#icons{
+   position: absolute;
+   display: flex;
+   right:0;
+   bottom:10px;
+   padding-right:20px;
+}
+#icons i{
+    font-size:0.7em;
+    margin-right:10px;
+    color:black;
+}
+
+
+
+/*------comments -------------*/
+
+#alertComm{
+        color:red;
+        font-size:1.5em;
+        font-weight:bold;
 }

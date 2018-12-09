@@ -5,10 +5,8 @@ require ('model/Auth.php');
 require ('controller/back_control.php');
 
 
-if  (Auth::isLogged()){
-    echo 'Bienvenue Jean Forteroche!'; //on vérifie qu'il est bien  authentifié et on redirige si non
-}
-else{
+if  (!Auth::isLogged()){
+   
 
     header ('Location: ../../index.php?action=authentification');
 }

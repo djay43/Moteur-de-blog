@@ -9,12 +9,14 @@ $title="Admin - lire article";
 <?php	while ($all_comments=$comments->fetch()){ ?>
 <?php
 	if ($all_comments['alert']==1){?>
-				<span id="alert">
+		<span id="alert">
 
-		<h2>Un commentaire a été signalé</h2>
+		<h2>Un commentaire a été signalé:</h2>
+		<h5>
 <?php
-		echo $all_comments['author'];
-		?><a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>">Modérer le post</a>
+		
+		echo $all_comments['comment'];
+		?></h5><a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>">    Modérer le post</a>
 		</span>
 
 		<?php
@@ -31,11 +33,13 @@ $title="Admin - lire article";
 
 
 
-					<span id="read_view"><?= $all_posts['title'];?><br/>
-					<?= $all_posts['post_content'];?> <br/>
-					<a href="./admin_index.php?action=post_view&id=<?= $all_posts['id']?>"> Voir l'article</a><br/>
-					<a href="./admin_index.php?action=delete&id=<?= $all_posts['id']?>"> Supprimer l'article</a><br/>
-					<a href="./admin_index.php?action=update&id=<?= $all_posts['id']?>"> Éditer l'article</a>
+					<span id="read_view"><h5 id="post_title"><?= $all_posts['title'];?></h5><br/>
+
+					<?= $all_posts['extract'];?><br/>
+
+						<span id="icons"><a href="./admin_index.php?action=post_view&id=<?= $all_posts['id']?>"><i class="far fa-eye"></i></a><br/>
+						<a href="./admin_index.php?action=delete&id=<?= $all_posts['id']?>"> <i class="fas fa-trash-alt"></i></a><br/>
+						<a href="./admin_index.php?action=update&id=<?= $all_posts['id']?>"> <i class="fas fa-pen"></i></a></span>
 
 					</span>
 	<?php	} ?>

@@ -5,32 +5,31 @@
 
 ob_start(); ?>
        <section>
-           <article id="main_content">
-                <h3>Dernière publication:</h3>
+           <article id="main_post">
+                <h2><?= $post['title'];?></h2>
                
                       
-                        <h5> <?= $post['title'];?> </h5>
                         <p><?= $post['post_content']; ?></p>
                         <p>Posté le <?= $post['post_date_fr'];?></p> 
            </article>
            
            <aside id="comments">
-                      <h3>Commentaires</h3>
+                      <h2>Commentaires</h2>
                           <?php while ($comment=$comments->fetch()){ ?>
 
-                      <h5> <?= $comment['author'];?></h5>
-                      <p> <?= $comment['comment'];?></p>
+                      <h5> <strong><?= $comment['author'];?></strong></h5>
+                      <p> <em><?= $comment['comment'];?></em></p>
                       <p> <?= $comment['comment_date_fr'];?></p>
                       <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= $comment['post_id'] ?>"> Signaler</a><br/><br/><br/>
                         <?php } ?>
 
                         <form action="index.php?action=new_comment&amp;id=<?= $post['id'] ?>" method="post">
                           <div>
-                              <label for="author">Auteur</label><br />
+                              <label for="author"><strong>Auteur</strong></label><br />
                               <input type="text" id="author" name="author" />
                           </div>
                           <div>
-                              <label for="comment">Commentaire</label><br />
+                              <label for="comment"><strong>Commentaire</strong></label><br />
                               <textarea id="comment" name="comment"></textarea>
                           </div>
                           <div>

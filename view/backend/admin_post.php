@@ -22,7 +22,7 @@ $title="Administration d'un post";
                       <p> <?= $comment['comment_date_fr'];?></p>
 
                       <?php if ($comment['alert']=="1"){
-                      	echo "ce commentaire a été signalé!!!!";                     	
+                      	echo "<span id='alertComm'>Ce commentaire a été signalé!</span>";                     	
                       }
                          ?>                  <br/><br/><input type="submit"><br/><br/><br/><br/>
 					<?php

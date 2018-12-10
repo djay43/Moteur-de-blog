@@ -7,8 +7,7 @@ require ('controller/back_control.php');
 
 if  (!Auth::isLogged()){
    
-
-    header ('Location: ../../index.php?action=authentification');
+    header ('Location: ./index.php?action=authentificationFailed');
 }
 
 

@@ -1,9 +1,3 @@
-function MaxLengthTextarea(textarea,maxlength){
-  if (textarea.value.length > maxlength) {
-    textarea.value = textarea.value.substring(0, maxlength);
-    alert('Votre texte ne doit pas dépasser '+maxlength+' caractères!');
-   }
-}
 
 function stripHtml(html){
     var temporalDivElement = document.createElement("div");

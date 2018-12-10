@@ -30,7 +30,7 @@ ob_start(); ?>
                           </div>
                           <div>
                              <br/><strong>Commentaire</strong><br /><span id="error"></span>
-                              <textarea id="comment" name="comment" cols="20" rows="2" required minlength="2" maxlength="255" onkeyup="javascript:MaxLengthTextarea(this, 255);"></textarea>
+                              <textarea id="comment" name="comment" cols="20" rows="2" required minlength="2" maxlength="255"></textarea>
                           </div>
                           <div>
                                 <input type="submit" class="btn btn-info" id="sendComment">

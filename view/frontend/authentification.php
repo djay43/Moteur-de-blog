@@ -19,7 +19,7 @@ if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
 	   		header ('Location: ./admin_index.php?action=default');
 	   	}
 	   	else{
-	   		echo 'Identifiants ou mot de passe incorrect';
+	   		if (isset($error)){echo $error;}
 	   	}
 
  $title="Identifiez-vous!"; 
@@ -28,15 +28,15 @@ if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
 
 ob_start(); ?>
 
-       <section>
+       <section id="auth">
          
-       		<article id="main_content">
-                <form action="" method="post">
-  				<label>Pseudo</label>
-  				<input type="text" name="login" />
-  				<label>Mot de passe</label>
-  				<input type="password" name="password" />
-  				<input type="submit" value="Connexion" />
+       		<article id="connect">
+                <form action="" method="post"><br/>
+  				<label><strong>Pseudo</strong></label><br/>
+  				<input type="text" name="login" /><br/><br/>
+  				<label><strong>Mot de passe</strong></label><br/>
+  				<input type="password" name="password" /><br/><br/>
+  				<input type="submit" value="Connexion" class="btn btn-primary"/>
 				</form>
 
             </article>

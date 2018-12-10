@@ -32,6 +32,11 @@ if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
 if ($_GET['action']=='authentification'){
 	require ('view/frontend/authentification.php');
 }
+if ($_GET['action']=='authentificationFailed'){
+	$error="<strong> Identifiant ou mot de passe incorrect</strong>	";
+	require ('view/frontend/authentification.php');
+}
+
 
 if ($_GET['action']=="alert"){
 

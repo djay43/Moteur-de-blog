@@ -1,3 +1,4 @@
+
 #admin{
 
 background-color:rgba(0,0,0,0.2);
@@ -12,11 +13,10 @@ background-color:rgba(0,0,0,0.2);
     background-color:#A5A5AC;
     width:90%;
     margin:115px auto;
-    padding:10px;
+    padding:30px;
     border-radius:10px;
     position:relative;
     z-index:20;
-
 
 }
 
@@ -29,7 +29,7 @@ li{
 }
 
 a{
-    text-decoration:none;
+    text-decoration:none !important;
     font-size:1.6em;
     color:white;
 }
@@ -50,7 +50,9 @@ a{
 #tools li:hover{
     background:#7C7C81;
 }
-
+#tools a:hover{
+    color:white;
+}
 #read_view{
     position:relative;
     margin:auto; 
@@ -114,4 +116,10 @@ a{
         color:red;
         font-size:1.5em;
         font-weight:bold;
+}
+
+textarea{
+
+    width:500px;
+    height:100px;
 }

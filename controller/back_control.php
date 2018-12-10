@@ -11,7 +11,6 @@ $postManager->new_post($_POST['post_title'],$_POST['create_post'],$_POST['create
 }
 
 
-
 function get_all_posts(){
 	 $postManager= new PostManager;
 	 $posts=$postManager->all_posts();
@@ -56,9 +55,17 @@ function delete($checkId){
 		$commentManager= new CommentManager;
 
 		$deletePost=$postManager-> delete_post($checkId);
-		$deleteComm=$commentManager-> delete_comm($checkId);
+		$deleteComm=$commentManager-> delete_all_comm($checkId);
 	 	return $deletePost;
 	 	return $deleteComm;
+
+ }
+
+ function deleteComm($checkId){
+
+ 	$commentManager= new CommentManager;
+ 	$deleteComm=$commentManager-> delete_comm($checkId);
+	 return $deleteComm;
 
  }
 
@@ -77,5 +84,11 @@ function editComment ($comment_id, $author, $comment){
 
 }
 
+function defaultAlert ($post_id){
+
+    $commentManager=new CommentManager;
+    $alertPost=$commentManager->default_alert($post_id);
+    return $alertPost;
+}
 
 

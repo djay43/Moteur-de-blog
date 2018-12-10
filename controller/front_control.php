@@ -41,7 +41,6 @@ function new_comment($post_id,$author, $comment)
     }
 
 
-
 }
 
 function alert ($post_id){

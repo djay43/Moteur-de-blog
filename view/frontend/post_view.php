@@ -9,7 +9,7 @@ ob_start(); ?>
                 <h2><?= $post['title'];?></h2>
                
                       
-                        <p><?= $post['post_content']; ?></p>
+                        <?= $post['post_content']; ?>
                         <p>Posté le <?= $post['post_date_fr'];?></p> 
            </article>
            
@@ -20,20 +20,20 @@ ob_start(); ?>
                       <h5> <strong><?= $comment['author'];?></strong></h5>
                       <p> <em><?= $comment['comment'];?></em></p>
                       <p> <?= $comment['comment_date_fr'];?></p>
-                      <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= $comment['post_id'] ?>"> Signaler</a><br/><br/><br/>
+                      <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= $comment['post_id'] ?>"> Signaler</a><br/>
                         <?php } ?>
 
                         <form action="index.php?action=new_comment&amp;id=<?= $post['id'] ?>" method="post">
                           <div>
-                              <label for="author"><strong>Auteur</strong></label><br />
-                              <input type="text" id="author" name="author" />
+                              <br/><br/><label for="author"><strong>Auteur</strong></label><br />
+                              <input type="text" id="author" name="author" required minlength="2" maxlength="19"/>
                           </div>
                           <div>
-                              <label for="comment"><strong>Commentaire</strong></label><br />
-                              <textarea id="comment" name="comment"></textarea>
+                             <br/><strong>Commentaire</strong><br /><span id="error"></span>
+                              <textarea id="comment" name="comment" cols="20" rows="2" required minlength="2" maxlength="255" onkeyup="javascript:MaxLengthTextarea(this, 255);"></textarea>
                           </div>
                           <div>
-                              <input type="submit" />
+                                <input type="submit" class="btn btn-info" id="sendComment">
                           </div>
                       </form>
            </aside>

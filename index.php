@@ -21,7 +21,8 @@ if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
 
 	            }
 	            else {
-	                throw new Exception ('Erreur : tous les champs ne sont pas remplis !');
+					post($_GET['id']);
+
 	            }
 	        }
 	        else {

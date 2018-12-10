@@ -14,7 +14,6 @@
 
 
 
-
 /*------------------Main // Header -------------------------*/
 html, body{
     margin:0;
@@ -236,7 +235,7 @@ header a:hover{
 
     background-color:rgba(255,255,255,0.8);
     width:50%;       
-    padding:10px;
+    padding:20px;
     margin:auto;
     margin-top:50px;
     border-radius:20px;
@@ -247,4 +246,10 @@ header a:hover{
 #comments h5, #comments h2{
 
     margin-top:40px;
+}
+
+#comment{
+    width:500px;
+    height:200px;
+    padding:5px;
 }

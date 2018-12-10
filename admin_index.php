@@ -12,7 +12,7 @@ if  (!Auth::isLogged()){
 }
 
 
-
+ 
 				// si titre, contenu de poste et extrait renseignés, alors on crée un nouveau poste et on redirige
 	if ($_GET['action']=="new_post" && !empty($_POST['post_title']) && !empty($_POST['create_post']) && !empty ($_POST['create_extract'])){
 			add_post();
@@ -47,6 +47,14 @@ if ($_GET['action']=="delete_post"){
 			require('view/backend/delete_view.php');
 		
 	}
+
+
+if ($_GET['action']=="deleteComm"){
+			
+			$delete=deleteComm($_GET['comm_id']);
+			post($_GET['id']);
+		
+	}
 if ($_GET['action']=="edit_post"){
 
 				$edit=edit($_GET['id'],$_POST['title'],$_POST['post_content'],$_POST['extract']);
@@ -58,6 +66,7 @@ if ($_GET['action']=="edit_post"){
 if ($_GET['action']=="edit_comment"){
 
 				$edit=editComment($_GET['comm_id'],$_POST['author'],$_POST['comment']);
+				$default=defaultAlert($_GET['comm_id']);
 
 				post($_GET['id']);
 

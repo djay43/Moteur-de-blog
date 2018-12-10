@@ -7,7 +7,6 @@ require_once("Manager.php");
 class CommentManager extends Manager{
 
     
-
  	public function get_comments($post_id){
 
  			$bdd=$this->base_connect();
@@ -42,11 +41,11 @@ class CommentManager extends Manager{
      public function edit_comment ($comment_id, $author, $comment){
 
         $bdd=$this->base_connect();
-        $sql=$bdd->prepare('UPDATE comments SET author=?,commen`? WHERE id=? ');
+        $sql=$bdd->prepare('UPDATE comments SET author=?,comment=? WHERE id=? ');
         $sql->execute (array($author, $comment, $comment_id));
     }
 
-      public function delete_comm ($checkId){
+      public function delete_all_comm ($checkId){
 
             $bdd=$this->base_connect();
             $sql=$bdd->prepare('DELETE FROM `comments` WHERE post_id=?');
@@ -54,11 +53,26 @@ class CommentManager extends Manager{
             return $sql;
     }
 
+    public function delete_comm ($checkId){
+
+            $bdd=$this->base_connect();
+            $sql=$bdd->prepare('DELETE FROM `comments` WHERE id=?');
+            $sql->execute (array($checkId));
+            return $sql;
+    }
+
     public function alert_comment($post_id){
 
         $bdd=$this->base_connect();
-        $sql=$bdd->prepare('UPDATE comments SET alert="1" WHERE id=?  ');
+        $sql=$bdd->prepare('UPDATE comments SET alert="1" WHERE id=?');
         $sql->execute (array($post_id));
     }
+    public function default_alert($post_id){
+
+        $bdd=$this->base_connect();
+        $sql=$bdd->prepare('UPDATE comments SET alert="0" WHERE id=?');
+        $sql->execute (array($post_id));
+    }
+
 
 }

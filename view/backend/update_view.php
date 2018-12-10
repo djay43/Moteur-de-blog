@@ -12,6 +12,6 @@ $title="Admin - mettre à jour article"
 					<input type="submit"></input>
 				</form>
 
-	<?php	 ?> ?></label>
+				
 <?php $admin_content = ob_get_clean();
 require('admin_template.php')?> 

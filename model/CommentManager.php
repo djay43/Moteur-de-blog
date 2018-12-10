@@ -3,10 +3,11 @@
 require_once("Manager.php"); 
 
 
-
+/*--------------------Défintion de la classe ----------------*/
 class CommentManager extends Manager{
 
-    
+    /* --------Fonction récupération d'un commentaire--------------*/
+
  	public function get_comments($post_id){
 
  			$bdd=$this->base_connect();
@@ -15,6 +16,9 @@ class CommentManager extends Manager{
             return $sql;
 
      }
+
+    /* --------Fonction récupération des commentaires--------------*/
+
     public    function all_comments(){
 
             $bdd=$this->base_connect();
@@ -24,6 +28,7 @@ class CommentManager extends Manager{
             }
      
 
+/* --------Fonction ajout d'un commentaire--------------*/
 
 
     public function post_comment($post_id, $author, $comment)
@@ -37,6 +42,7 @@ class CommentManager extends Manager{
 
         }
 
+/* --------Fonction edit d'un commentaire--------------*/
 
      public function edit_comment ($comment_id, $author, $comment){
 
@@ -44,6 +50,7 @@ class CommentManager extends Manager{
         $sql=$bdd->prepare('UPDATE comments SET author=?,comment=? WHERE id=? ');
         $sql->execute (array($author, $comment, $comment_id));
     }
+/* --------Fonction suppression de tous les commentaires-------------*/
 
       public function delete_all_comm ($checkId){
 
@@ -52,6 +59,7 @@ class CommentManager extends Manager{
             $sql->execute (array($checkId));
             return $sql;
     }
+/* --------Fonction suppression d'un commentaire--------------*/
 
     public function delete_comm ($checkId){
 
@@ -60,6 +68,7 @@ class CommentManager extends Manager{
             $sql->execute (array($checkId));
             return $sql;
     }
+/* --------Fonction signalement d'un commentaire--------------*/
 
     public function alert_comment($post_id){
 
@@ -67,6 +76,8 @@ class CommentManager extends Manager{
         $sql=$bdd->prepare('UPDATE comments SET alert="1" WHERE id=?');
         $sql->execute (array($post_id));
     }
+    /* --------Fonction pour enlever le signalement-------------*/
+
     public function default_alert($post_id){
 
         $bdd=$this->base_connect();

@@ -9,7 +9,7 @@ $title="Admin - lire article";
             
 			while ($all_posts = $posts->fetch()) {      
 			?>
-					<span id="read_view"><?= $all_posts['title'];?><br/>
+					<span id="read_view"><?= $all_posts['title'];?>
 					<?= $all_posts['post_content'];?> <br/>
 					<a href="./admin_index.php?action=post_view&id=<?= $all_posts['id']?>"> Voir le post</a></span>
 	<?php	} ?>

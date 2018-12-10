@@ -1,8 +1,10 @@
 <?php
+/* --------On charge les classes--------------*/
 
 require('./model/PostManager.php');
 require('./model/CommentManager.php');
 
+/* --------Fonction recuperation  post--------------*/
 
 function post($post_id)
 {   
@@ -19,6 +21,7 @@ function post($post_id)
 
 
 
+/* --------Fonction nouveau commentaire--------------*/
 
 function new_comment($post_id,$author, $comment)
 
@@ -42,6 +45,7 @@ function new_comment($post_id,$author, $comment)
 
 
 }
+/* --------Fonction signalement d'un commentaire--------------*/
 
 function alert ($post_id){
 

@@ -1,8 +1,11 @@
 <?php
 require_once("Manager.php"); 
 
+
+/* défintion de la classe */
 class PostManager extends Manager{
 
+/* --------Fonction récup tous les posts--------------*/
 
     public function all_posts(){
 
@@ -12,6 +15,9 @@ class PostManager extends Manager{
             return $sql;
 
     }
+
+    /* --------Fonction recup d'un post--------------*/
+
     public function get_post($post_id){
 
             $bdd=$this->base_connect();
@@ -20,6 +26,7 @@ class PostManager extends Manager{
             $post=$sql->fetch();
             return $post;
      }
+/* --------Fonction nouveau post--------------*/
 
     public function new_post ($post_title,$post_content,$post_extract){
 
@@ -28,6 +35,7 @@ class PostManager extends Manager{
             $sql=$post->execute (array($post_title,$post_content,$post_extract));
             return $sql;
 }
+/* --------Fonction suppression d'un post--------------*/
 
     public function delete_post ($checkId){
 
@@ -36,6 +44,7 @@ class PostManager extends Manager{
             $sql->execute (array($checkId));
             return $sql;
     }
+/* --------Fonction edit d'un post--------------*/
 
     public function edit_post ($post_id, $title, $post_content, $extract){
 

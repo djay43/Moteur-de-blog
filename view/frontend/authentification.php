@@ -3,22 +3,25 @@
 <?php
 session_start();
 require ('./model/Auth.php');
-if  (Auth::isLogged()){
+
+	if  (Auth::isLogged()){
 		header ('Location: ./admin_index.php?action=default');
-}
-if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
-	extract ($_POST);
-	$password=sha1($password);
+	}
 
-	   $_SESSION ['auth'] = array(
+	if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
+		extract ($_POST);
+		$password=sha1($password);
+
+	   	$_SESSION ['auth'] = array(
 	   		'login'=>$login,
-	   		'password'=> $password
-
-	   );
+	   		'password'=> $password);
 	
-	   		header ('Location: ./admin_index.php?action=default');
+
+	   	header ('Location: ./admin_index.php?action=default');
 	   	}
+
 	   	else{
+	   		
 	   		if (isset($error)){echo $error;}
 	   	}
 

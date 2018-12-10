@@ -1,9 +1,13 @@
 
+/* --------Fonction conversion html -> chaine de caractere--------------*/
+
 function stripHtml(html){
     var temporalDivElement = document.createElement("div");
     temporalDivElement.innerHTML = html;
     return temporalDivElement.textContent || temporalDivElement.innerText || "";
 }
+
+/* --------Fonction on verifie que les champs sont bien remplis--------------*/
 
 function checkTextArea(){
 

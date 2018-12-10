@@ -1,6 +1,6 @@
 <?php
 require_once ('Manager.php');
-
+/* ----------Vérification de l'authentificaiton--------------*/
 class Auth extends Manager{
 
 

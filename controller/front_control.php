@@ -3,6 +3,12 @@
 
 require('./model/PostManager.php');
 require('./model/CommentManager.php');
+/*----récupérer tous les posts------------*/
+function get_all_posts(){
+     $postManager= new PostManager;
+     $posts=$postManager->all_posts();
+     return $posts;
+}
 
 /* --------Fonction recuperation  post--------------*/
 
@@ -15,7 +21,6 @@ function post($post_id)
     $post = $postManager->get_post($post_id);
     $comments = $commentManager->get_comments($post_id);
     require('./view/frontend/post_view.php');
-
 
 }
 

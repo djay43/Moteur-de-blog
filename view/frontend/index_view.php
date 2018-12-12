@@ -26,8 +26,8 @@
     <body>
 
 
-                <div id="banner">
-                    <img src="./public/img/banner.jpg"/>
+                <div id="banner" class="row">
+                    <img src="./public/img/banner.jpg" />
                         <div id="opacity">
                             
                         </div>
@@ -35,7 +35,7 @@
 
                                 <h3>Dernière publication:</h3>
                
-                      
+                                
                                 <h5><strong> <?=  $see_last_ep['title'];?> </strong></h5>
                                 <p><?=  ($see_last_ep['extract']); ?></p>
                                 <p>Posté le <?=  $see_last_ep['post_date_fr'];?></p>
@@ -45,43 +45,48 @@
 
                 </div>
 
-
-
-
-
        <section>
                
       
-           
-           <div id="last_episodes_content">
-                <article class="last_post">
-                    <div id="last_less1">
-                            <h5><strong> <?= $see_last_ep_less1['title'];?> </strong></h5>
-                            <p><?=  $see_last_ep_less1['extract']; ?></p>
-                            <p>Posté le <?=  $see_last_ep_less1['post_date_fr'];?></p> 
-                            <p><a href="index.php?action=post&id=<?php echo $see_last_ep_less1['id']; ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>
-                    </div>
+                <?php while ($get_all_posts=$all_posts->fetch()){?>
+
+                <article class="last_posts">
+
+                         <h5> <?=  $get_all_posts['title']; ?> </h5>
+                         <p> <?= $get_all_posts['extract']; ?> </p>
+                         <p> <?= $get_all_posts['post_date_fr']; ?> </p>
+                        <p><a href="index.php?action=post&id=<?php echo $get_all_posts['id']; ?><!-- "><button type="button" class="btn btn-success">Lire plus</button></a></p>
+
+                </article>
+
+
+                
+                <?php } 
+
+                $videosParPage = 2;
+                $videosTotales = $all_posts->rowCount();
+                $pagesTotales = ceil($videosTotales/$videosParPage);
+
+                if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0) {
+                   $_GET['page'] = intval($_GET['page']);
+                   $pageCourante = $_GET['page'];
+                } else {
+                   $pageCourante = 1;
+                }
+                $depart = ($pageCourante-1)*$videosParPage;
+
+                    for($i=1;$i<=$pagesTotales;$i++) {
+                       
+                            echo '<a href="index.php?page='.$i.'">'.$i.'</a> ';
+                         
+                    }
+
+                ?>
+
+
+
+                
                
-                </article>
-                <article class="last_post">
-                    <div id="last_less2">
-                            <h5><strong> <?=  $see_last_ep_less2['title'];?> </strong></h5>
-                            <p><?=  $see_last_ep_less2['extract']; ?></p>
-                            <p>Posté le <?=  $see_last_ep_less2['post_date_fr'];?></p>
-                            <p><a href="index.php?action=post&id=<?php echo $see_last_ep_less2['id']; ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>
-
-                    </div>
-               </article>
-               <article class="last_post">
-                    <div id="last_less3">
-                            <h5> <strong><?=  $see_last_ep_less3['title'];?> </strong> </h5>
-                            <p><?=  $see_last_ep_less3['extract']; ?></p>
-                            <p>Posté le <?=  $see_last_ep_less3['post_date_fr'];?></p> 
-                            <p><a href="index.php?action=post&id=<?php echo $see_last_ep_less3['id']; ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>
-
-                    </div>
-                </article>
-            </div>
             
         </section>
 

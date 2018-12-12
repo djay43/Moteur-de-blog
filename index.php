@@ -4,25 +4,24 @@ require('controller/front_control.php');
 
 try {
 
-if (isset($_GET['action'])) {
+	if (isset($_GET['action'])) {
 
-if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
-    $post = post($_GET['id']);
-     $title= $post['title'];
-// On va voir le post
-
-}
+				/*--------récupération et affichage d'un post -------------*/
+		if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
+    		$post = post($_GET['id']);
+     		$title= $post['title'];
+		}
 
 
 	   if ($_GET['action'] == 'new_comment') {
+
 	        if (isset($_GET['id']) && $_GET['id'] > 0) {
 	            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-	                new_comment($_GET['id'], $_POST['author'], $_POST['comment']);// on ajoute un commentaire
 
+	                new_comment($_GET['id'], $_POST['author'], $_POST['comment']);// on ajoute un commentaire
 	            }
 	            else {
 					post($_GET['id']);
-
 	            }
 	        }
 	        else {
@@ -31,41 +30,44 @@ if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
 	    }
 	    		/* --------Si action = authentification, on va vers la zone de connection--------------*/
 
-if ($_GET['action']=='authentification'){
-	require ('view/frontend/authentification.php');
-}
+		if ($_GET['action']=='authentification'){
+
+				require ('view/frontend/authentification.php');
+			}
 
 		/* --------Si action = authentificationFailed, onenvoi le message d'erreur et on redirige--------------*/
 
-if ($_GET['action']=='authentificationFailed'){
-	$error="<strong> Identifiant ou mot de passe incorrect</strong>	";
-	require ('view/frontend/authentification.php');
-}
+		if ($_GET['action']=='authentificationFailed'){
+				$error="<strong> Identifiant ou mot de passe incorrect</strong>	";
+				require ('view/frontend/authentification.php');
+		}
 
-		/* --------Si action = akert, on envoi le signalement et on revient au post--------------*/
+		/* --------Si action = alert, on envoi le signalement et on revient au post--------------*/
 
-if ($_GET['action']=="alert"){
+		if ($_GET['action']=="alert"){
 
-				alert($_GET['id']);
-			
-				post($_GET['post_id']);
+				alert($_GET['id']); // On signale l'article dans la partie admin
+				post($_GET['post_id']);// On revient au post
+
+		}
 
 	}
 
-}
-else{
-		/* --------Pouet le reste la vue par défault--------------*/
+	else{
+		/* --------sinon le reste la vue par défault--------------*/
+		$all_posts=get_all_posts();
 
-require('view/frontend/index_view.php');
-}
+		require('view/frontend/index_view.php');
+	}
 }
 
 
-		/* --------gestion des erreurs--------------*/
+		/* --------gestion des erreurs afffichage vue par défaut--------------*/
 
 catch (Exception $e){
-	echo 'Erreur :'.$e->getMessage();
-	require ('error_view.php'); //On affiche l'erreur
+
+	$all_posts=get_all_posts();
+	require('view/frontend/index_view.php');
 }
 
 

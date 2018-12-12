@@ -49,7 +49,7 @@ function getComment ($post_id){
 	 return $comment;
 
 }
-/* --------Fonction recuperation d'un post particulier -------------*/
+/* --------Fonction recuperation d'un post particulier  -------------*/
 
 function getPost($post_id)
 {   

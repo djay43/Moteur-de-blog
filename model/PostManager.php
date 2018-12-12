@@ -10,9 +10,9 @@ class PostManager extends Manager{
     public function all_posts(){
 
             $bdd=$this->base_connect();
-            $sql=$bdd->query('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM posts ORDER BY id DESC');            
-            
-            return $sql;
+            $sql=$bdd->query('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM posts ORDER BY id DESC LIMIT 1,4'); 
+
+             return $sql;
 
     }
 
@@ -56,20 +56,9 @@ class PostManager extends Manager{
 }	
 
 
-
-
 		$postmanage= new PostManager;
  		$bdd=$postmanage->base_connect();
 
         $last_ep = $bdd->query('SELECT id, title, post_content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract FROM posts ORDER BY id DESC LIMIT 1 ');       
         $see_last_ep = $last_ep->fetch();
 
-
-        $last_ep_less1 = $bdd->query(' SELECT id, title, post_content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract  FROM posts ORDER BY id DESC LIMIT 1,1');       
-        $see_last_ep_less1 = $last_ep_less1->fetch();
-
-        $last_ep_less2 = $bdd->query(' SELECT id, title, post_content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract  FROM posts ORDER BY id DESC LIMIT 2,2');       
-        $see_last_ep_less2 = $last_ep_less2->fetch();
-
-        $last_ep_less3 = $bdd->query(' SELECT id, title, post_content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract  FROM posts ORDER BY id DESC LIMIT 3,3');       
-        $see_last_ep_less3 = $last_ep_less3->fetch();

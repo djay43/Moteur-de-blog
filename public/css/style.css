@@ -186,32 +186,22 @@ header a:hover{
     background:white;
 }
 
-#last_episodes_content{
-    display:flex;
-    flex-direction:column;
+
+.last_posts{
     margin:auto;
-    margin-top:30px;
-    width:90%;
-    
-    
-}
-.last_post{
-    margin:auto;
-    margin-top:50px;
+    margin-top:20px;
     width:80%;
     background-color:rgba(255,255,255,0.8);
     padding:10px;
     overflow: hidden;
     border-radius:10px;
+    height:280px;
+    padding: 10px 40px;
 
     
 }
 
-#last_less1,#last_less2, #last_less3{
-    margin:10px;
-    height:220px;
-    overflow: hidden;
-}
+
 
 /*----------- Post view----------------------*/
 

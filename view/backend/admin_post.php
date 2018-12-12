@@ -1,5 +1,5 @@
 <?php ob_start();
-$title="Administration d'un post";
+$title="Admin post ".$post['title'];
 ?>
 
   <h2> <?= $post['title']; ?> </h2>
@@ -22,7 +22,8 @@ $title="Administration d'un post";
                       	     echo "<span id='alertComm'>Ce commentaire a été signalé!</span>";                     	
                            }
                           ?>                  
-                      <br/><input type="submit" class="btn btn-info"> <a href="./admin_index.php?action=deleteComm&id=<?= $comment['post_id']?>&comm_id=<?= $comment['id']?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"> <i class="fas fa-trash-alt" id="delete"></i></a></span><br/>
+                      <br/><input type="submit" class="btn btn-success">
+                      <a href="./admin_index.php?action=deleteComm&id=<?= $comment['post_id']?>&comm_id=<?= $comment['id']?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"> <i class="fas fa-trash-alt" id="deleteIcon"></i></a></span><br/>
 <br/><br/><br/><br/>
         
         </form>

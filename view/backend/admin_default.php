@@ -1,5 +1,5 @@
 <?php ob_start();
-$title="Admin - lire article";
+$title="Admin - liste des articles";
  ?>
 
 <h2> Liste des posts </h2>

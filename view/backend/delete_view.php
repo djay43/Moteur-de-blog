@@ -1,5 +1,5 @@
 <?php ob_start();
-$title="Admin - lire article";
+$title="Admin - Supprimer article";
  ?>
 
 <h2> Delete </h2>
@@ -12,12 +12,12 @@ $title="Admin - lire article";
 			<form action="./admin_index.php?action=delete_post&id=<?= $all_posts['id']?>" method="post">
 
 			<span id="delete_view">
-				<input type="checkbox" name="postId[]" value="<?= $all_posts['id']?>"><?= $all_posts['title'];?><br/>
+				<input type="checkbox" name="postId[]" value="<?= $all_posts['id']?>"> <h5><?= $all_posts['title'];?></h5><br/>
 
 					<?= $all_posts['extract'];?> <br/></span>
 	<?php	} ?>
              			
-             	<input type="submit" value="supprimer" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cette entrée?'));">
+             	<input type="submit" value="supprimer" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cette entrée?'));">
  			</form>
 
   <?php

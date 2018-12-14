@@ -44,9 +44,9 @@
            <div id="tools">
                 <nav>
                     <ul>
-                        <li> <a href=".\admin_index.php?action=create">Nouvel article</a></li>
+                        <li> <a href=".\admin_index.php?action=create">Nouveau</a></li>
                         
-                        <li>  <a href=".\admin_index.php?action=default">Liste des articles</a></li>
+                        <li>  <a href=".\admin_index.php?action=default">Liste</a></li>
 
                       
                         <li>  <a href=".\admin_index.php?action=delete">Supprimer</a></li>

@@ -16,6 +16,7 @@ if(isset($_GET['action'])){
 
 	if ($_GET['action']=="new_post" && !empty($_POST['post_title']) && !empty($_POST['create_post']) && !empty ($_POST['create_extract'])){
 			add_post();
+			$success="<span class=\"success\"> Félicitations! Votre nouvel article est maintenant en ligne </span>";
 			header ("Location: index.php");
 	}
 
@@ -78,10 +79,12 @@ if ($_GET['action']=="edit_post" && !empty($_GET['id']) && $_GET['id']>0){
 
 if ($_GET['action']=="edit_comment" && !empty($_GET['comm_id']) && $_GET['comm_id']>0){
 
-				$edit=editComment($_GET['comm_id'],$_POST['author'],$_POST['comment']);
+				$success="<span class=\"success\">Le commentaire a bien été autorisé</span>";
 				$default=defaultAlert($_GET['comm_id']);
+				$post=getPost($_GET['id']);
+				$comments=get_all_comments();
+				 require ('./view/backend/admin_post.php');
 
-				post($_GET['id']);
 
 		
 	}

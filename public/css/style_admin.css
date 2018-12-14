@@ -1,4 +1,7 @@
-
+#success{
+    color:green;
+    font-weight:bold;
+}
 #admin{
 
 background-color:rgba(0,0,0,0.2);
@@ -33,10 +36,16 @@ a{
     font-size:1.6em;
     color:white;
 }
-#tools nav ul{
+#tools nav {
     display:flex;
     position:absolute;
-    right:90px;
+    left:40px;
+    top:100px;
+
+
+}
+#tools nav ul{
+    display:flex;
 }
 #tools li{
 
@@ -44,7 +53,9 @@ a{
         padding:15px 15px 15px 15px;
         border-radius:5px;
         margin-right:10px;
-
+        width:200px;
+        text-align:center;
+        font-size:0.6em;
 
 }
 #tools li:hover{
@@ -61,7 +72,7 @@ a{
     padding:10px;
     margin:auto;
     margin: 10px 0;
-    height:90px;
+    height:110px;
 }
 
 #alert{
@@ -122,7 +133,7 @@ a{
 
 #alertComm{
         color:red;
-        font-size:1.5em;
+        font-size:1.2em;
         font-weight:bold;
 }
 
@@ -143,4 +154,34 @@ margin-left:20px;
 
 #delete_view h5, #delete_view p{
     margin:0;
+}
+#adminComments{
+    background:rgba(255,255,255,0.4);
+    width:50%;
+    padding:10px;
+    margin-bottom:10px;
+}
+/*-----------Media queries ----------------*/
+
+@media screen and (max-width: 750px) {
+  #tools li {
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 640px) {
+
+  #tools li {
+    width:50%;
+    padding:10px;
+    margin-top:15px;
+    font-size:0.4em;
+    text-align:center;
+  }
+  #tools nav{
+margin-right:140px;
+left:0;
+  }
 }

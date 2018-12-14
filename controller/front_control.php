@@ -20,10 +20,26 @@ function post($post_id)
 
     $post = $postManager->get_post($post_id);
     $comments = $commentManager->get_comments($post_id);
+
     require('./view/frontend/post_view.php');
 
 }
 
+function get_all_comments(){
+     $commentManager= new CommentManager;
+     $comments=$commentManager->all_comments();
+     return $comments;
+}
+
+function getPost($post_id)
+{   
+
+    $postManager = new PostManager();
+
+    $post = $postManager->get_post($post_id);
+    return $post;
+
+}
 
 
 /* --------Fonction nouveau commentaire--------------*/
@@ -36,17 +52,7 @@ function new_comment($post_id,$author, $comment)
     $find_comment= $commentManager->post_comment($post_id, $author, $comment);
 
 
-    if ($find_comment === false) {
-
-        throw new Exception('Impossible d\'ajouter le commentaire !'); // va remonter jusqu'au routeur pour gérer l'erreur
-
-    }
-
-    else {
-
-        header('Location: ./index.php?action=post&id=' . $post_id);
-
-    }
+    return $find_comment;
 
 
 }

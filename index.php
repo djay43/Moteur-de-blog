@@ -8,8 +8,11 @@ try {
 
 				/*--------récupération et affichage d'un post -------------*/
 		if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
-    		$post = post($_GET['id']);
+    		$post = getPost($_GET['id']);
+    		$comments=get_all_comments();
      		$title= $post['title'];
+     		require('./view/frontend/post_view.php');
+
 		}
 
 
@@ -19,9 +22,16 @@ try {
 	            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
 
 	                new_comment($_GET['id'], $_POST['author'], $_POST['comment']);// on ajoute un commentaire
+	                $post = getPost($_GET['id']);
+		    		$comments=get_all_comments();
+		    		$success="<span class=\"success\"> Votre commentaire a bien été envoyé </span>";
+		     		require('./view/frontend/post_view.php');
 	            }
 	            else {
-					post($_GET['id']);
+					$post = getPost($_GET['id']);
+		    		$comments=get_all_comments();
+		    		$success="<span> Votre commentaire a bien été envoyé </span>";
+		     		require('./view/frontend/post_view.php');
 	            }
 	        }
 	        else {
@@ -45,9 +55,11 @@ try {
 		/* --------Si action = alert, on envoi le signalement et on revient au post--------------*/
 
 		if ($_GET['action']=="alert"){
-
 				alert($_GET['id']); // On signale l'article dans la partie admin
-				post($_GET['post_id']);// On revient au post
+				$post = getPost($_GET['post_id']);
+		    	$comments=get_all_comments();
+		    	$success="<span class=\"success\"> Le commentaire a bien été signalé </span>";
+		     	require('./view/frontend/post_view.php');
 
 		}
 

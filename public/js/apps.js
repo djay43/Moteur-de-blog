@@ -26,3 +26,6 @@ if (tinyMCE.get('myExtract').getContent().length>255){
 }
 
 
+$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});

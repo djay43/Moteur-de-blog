@@ -1,7 +1,7 @@
 
 <?php
  $title="Billet pour l'Alaska ".$post['title']; 
- 
+if (isset($success)){echo $success;}
 
 ob_start(); ?>
        <section>
@@ -20,9 +20,10 @@ ob_start(); ?>
                       <h5> <strong><?= $comment['author'];?></strong></h5>
                       <p> <em><?= $comment['comment'];?></em></p>
                       <p> <?= $comment['comment_date_fr'];?></p>
-                      <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= $comment['post_id'] ?>"> Signaler</a><br/>
+                      <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= $comment['post_id'] ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cette entrée?'));"> Signaler</a><br/>
                         <?php } ?>
 
+                        
                         <form action="index.php?action=new_comment&amp;id=<?= $post['id'] ?>" method="post">
                           <div>
                               <br/><br/><label for="author"><strong>Auteur</strong></label><br />

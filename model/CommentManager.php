@@ -22,7 +22,7 @@ class CommentManager extends Manager{
     public    function all_comments(){
 
             $bdd=$this->base_connect();
-            $sql=$bdd->query('SELECT id, post_id, author, comment, comment_date, alert FROM comments ORDER BY id DESC ');    
+            $sql=$bdd->query('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr, alert FROM comments ORDER BY id DESC ');    
             return $sql;
 
             }

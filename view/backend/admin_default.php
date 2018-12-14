@@ -20,7 +20,8 @@ $title="Admin - liste des articles";
 			
 			</h5>
 
-			<a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>">    Modérer le post</a>
+			<a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>" class="btn btn-warning">Modérer le post</a>
+
 		</span>
 
 		<?php

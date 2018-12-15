@@ -68,7 +68,7 @@ try {
 	else{
 		/* --------sinon le reste la vue par défault--------------*/
 		$all_posts=get_all_posts();
-
+		$see_last_ep = getLastPost();
 		require('view/frontend/index_view.php');
 	}
 }

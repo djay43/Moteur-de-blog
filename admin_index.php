@@ -51,7 +51,7 @@ if ($_GET['action']=="delete_post" && !empty($_POST['postId']) && $_POST['postId
 			 		delete($valeur);
 			}
 			$posts=get_all_posts();
-
+			$success="<span class=\"success\"> Votre article a bien été supprimé </span>";
 			require('view/backend/delete_view.php');
 		
 	}
@@ -70,7 +70,7 @@ if ($_GET['action']=="edit_post" && !empty($_GET['id']) && $_GET['id']>0){
 
 				$edit=edit($_GET['id'],$_POST['title'],$_POST['post_content'],$_POST['extract']);
 				$post=getPost($_GET['id']);
-
+				$success="<span class=\"success\"> Votre article a bien été édité </span>";
 				require('view/backend/update_view.php');
 		
 	}

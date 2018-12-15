@@ -53,12 +53,14 @@ class PostManager extends Manager{
         $sql->execute (array($title, $post_content, $extract, $post_id));
     }
 
-}	
-
-
-		$postmanage= new PostManager;
- 		$bdd=$postmanage->base_connect();
-
-        $last_ep = $bdd->query('SELECT id, title, post_content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract FROM posts ORDER BY id DESC LIMIT 1 ');       
+    public function get_last_post(){
+        $bdd=$this->base_connect();
+        $last_ep = $bdd->query('SELECT id, title, post_content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract FROM posts ORDER BY id DESC LIMIT 1 '); 
         $see_last_ep = $last_ep->fetch();
+        return $see_last_ep;
+    }
+}	
+    
+
+		
 

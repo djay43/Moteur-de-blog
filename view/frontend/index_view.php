@@ -28,11 +28,8 @@
 
 
                 <div id="banner">
-                    <img src="./public/img/banner.jpg" />
-                        <div id="opacity">
-                            
-                        </div>
-                        <article id="main_content">
+                        <img src="./public/img/banner.jpg" >                           
+                        <article id="main_content" class="col sm-5">
 
                                 <h3>Dernière publication:</h3>
                
@@ -46,7 +43,7 @@
 
                 </div>
 
-       <section>
+       <section id="lastPosts">
                
       
                 <?php while ($get_all_posts=$all_posts->fetch()){?>

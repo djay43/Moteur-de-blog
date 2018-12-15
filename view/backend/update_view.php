@@ -1,5 +1,7 @@
 <?php ob_start();
 $title="Update ". $post['title'];
+	if (isset($success)){echo $success;}
+
  ?>
 
 				<h2> Titre </h2>

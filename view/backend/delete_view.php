@@ -1,5 +1,6 @@
 <?php ob_start();
 $title="Admin - Supprimer article";
+	if (isset($success)){echo $success;}
  ?>
 
 <h2> Delete </h2>

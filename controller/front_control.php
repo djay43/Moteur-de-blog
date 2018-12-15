@@ -65,3 +65,8 @@ function alert ($post_id){
     return $alertPost;
 }
 
+function getLastPost(){
+    $postManager= new PostManager;
+    $see_last_ep = $postManager->get_last_post();
+    return $see_last_ep;
+}

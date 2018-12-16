@@ -20,7 +20,7 @@ $title="Admin - liste des articles";
 			
 			</h5>
 
-			<a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>" class="btn btn-warning">Modérer le post</a>
+			<a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>" class="btn btn-warning" id="adminSignalBtn">Modérer le post</a>
 
 		</span>
 
@@ -36,13 +36,13 @@ $title="Admin - liste des articles";
 			while ($all_posts = $posts->fetch()) {      
 		?>
 
-					<span id="read_view"><h5 id="post_title"><?= strip_tags($all_posts['title']);?></h5><br/>
+					<div id="read_view"><h5 id="post_title"><?= strip_tags($all_posts['title']);?></h5><br/>
 
 					<p><?= strip_tags($all_posts['extract']);?></p> <br/>
 
 						<span id="icons"><a href="./admin_index.php?action=post_view&id=<?= $all_posts['id']?>"><i class="far fa-eye"></i></a><br/>
 						<a href="./admin_index.php?action=update&id=<?= $all_posts['id']?>"> <i class="fas fa-pen"></i></a>
-						<a href="./admin_index.php?action=delete&id=<?= $all_posts['id']?>"> <i class="fas fa-trash-alt"></i></a></span><br/>
+						<a href="./admin_index.php?action=delete&id=<?= $all_posts['id']?>"> <i class="fas fa-trash-alt"></i></a></div><br/>
 
 					</span>
 	<?php	} ?>

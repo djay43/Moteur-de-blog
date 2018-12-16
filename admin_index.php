@@ -45,16 +45,25 @@ if(isset($_GET['action'])){
 
 		/* --------Si action = delete_post, on recup tous le ^post sélectionné de via checkbox on supprime et redirige--------------*/
 
-if ($_GET['action']=="delete_post" && !empty($_POST['postId']) && $_POST['postId']>0){
-			$posts=get_all_posts();
-				foreach ($_POST['postId'] as $valeur){ // on parcoure le tableau id sélectionné de checkbox
-			 		delete($valeur);
+		if ($_GET['action']=="delete_post" && !empty($_POST['postId']) && $_POST['postId']>0){
+					$posts=get_all_posts();
+						foreach ($_POST['postId'] as $valeur){ // on parcoure le tableau id sélectionné de checkbox
+					 		delete($valeur);
+					}
+					$posts=get_all_posts();
+					$success="<span class=\"success\"> Votre article a bien été supprimé </span>";
+					require('view/backend/delete_view.php');
+				
 			}
-			$posts=get_all_posts();
-			$success="<span class=\"success\"> Votre article a bien été supprimé </span>";
-			require('view/backend/delete_view.php');
-		
-	}
+
+		 if ($_GET['action']=="delete_post" && !isset($_POST['postId'])){
+					
+					$posts=get_all_posts();
+					$error="<span id=\"error\"> Veuillez sélectionner votre article à supprimer </span>";
+					require('view/backend/delete_view.php');
+				
+			}
+
 
 		/* --------Si action = deleteComm, on recup le comm, le supprime et on redirige vers le post--------------*/
 

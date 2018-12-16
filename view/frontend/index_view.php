@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <title>Jean forteroche blog</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
    	    <link href="./public/css/style.css" rel="stylesheet" />
@@ -55,27 +57,31 @@
                          <p> <?= $get_all_posts['post_date_fr']; ?> </p>
                         <p><a href="index.php?action=post&id=<?php echo $get_all_posts['id']; ?><!-- "><button type="button" class="btn btn-success">Lire plus</button></a></p>
 
+
                 </article>
 
 
                 
                 <?php } 
 
-                $videosParPage = 2;
-                $videosTotales = $all_posts->rowCount();
-                $pagesTotales = ceil($videosTotales/$videosParPage);
+                $perPage = 2;
+                $totalPosts = $all_posts->rowCount();
+                $pagesTotales = ceil($totalPosts/$perPage);
+                $currentPage=1;
+                $first = ($currentPage-1)*$perPage;
+
+                echo $totalPosts;
 
                 if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0) {
                    $_GET['page'] = intval($_GET['page']);
-                   $pageCourante = $_GET['page'];
+                   $currentPage = $_GET['page'];
                 } else {
-                   $pageCourante = 1;
+                   $currentPage = 1;
                 }
-                $depart = ($pageCourante-1)*$videosParPage;
 
                     for($i=1;$i<=$pagesTotales;$i++) {
                        
-                            echo '<a href="index.php?page='.$i.'">'.$i.'</a> ';
+                            echo '<a href="index.php?page='.$i.'&first='.$first.'">'.$i.'</a> ';
                          
                     }
 

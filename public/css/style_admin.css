@@ -2,14 +2,19 @@
 #admin{
 
 background-color:rgba(0,0,0,0.2);
-    display:flex;
+display:flex;
    
 }
-
-
+#post{
+    width:90%;
+}
+#myExtract,#Extract {
+    width:90%;
+    height:200px;
+}
 
 #visuel{
-    
+
     background-color:#A5A5AC;
     width:90%;
     margin:115px auto;
@@ -22,8 +27,9 @@ background-color:rgba(0,0,0,0.2);
 
 ul{
     list-style-type: none;
-    
+    margin:0;
 }
+
 li{
      padding:20px 0;
 }
@@ -33,24 +39,33 @@ a{
     font-size:1.6em;
     color:white;
 }
-#tools nav {
+#tools{
+    margin:auto;
+    right:0;
+    height:20px;
     display:flex;
-    position:absolute;
-    left:40px;
-    top:100px;
-
-
+    width:90%;
 }
-#tools nav ul{
+
+
+
+
+
+#tools ul{
+    padding:0;
+    margin:auto;
+    text-align:center;
     display:flex;
+    margin-top:80px;
 }
 #tools li{
+
 
         background-color:#A5A5AC;
         padding:15px 15px 15px 15px;
         border-radius:5px;
-        margin-right:10px;
         width:200px;
+        margin:10px;
         text-align:center;
         font-size:0.6em;
 
@@ -69,7 +84,6 @@ a{
     padding:10px;
     margin:auto;
     margin: 10px 0;
-    height:110px;
 }
 
 #alert{
@@ -134,11 +148,7 @@ a{
         font-weight:bold;
 }
 
-textarea{
 
-    width:500px;
-    height:100px;
-}
 
 #deleteIcon{
 position:absolute;
@@ -154,31 +164,50 @@ margin-left:20px;
 }
 #adminComments{
     background:rgba(255,255,255,0.4);
-    width:50%;
+    width:80%;
     padding:10px;
     margin-bottom:10px;
 }
 /*-----------Media queries ----------------*/
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   #tools li {
-    width:100%;
+    width:150px;
     padding:10px;
-    margin-top:10px;
+    margin-top:20px;
   }
 }
 
 @media screen and (min-width: 0px) and (max-width: 640px) {
-
+        #visuel{
+            padding:10px;
+}
   #tools li {
-    width:50%;
-    padding:10px;
-    margin-top:15px;
+    width:65px;
+    margin:1px;
+    padding:5px;
+    margin-top:35px;
     font-size:0.4em;
     text-align:center;
   }
-  #tools nav{
-margin-right:140px;
-left:0;
+
+  #read_view{
+    display:flex;
+    flex-direction:column;
+    font-size:0.8em;
   }
+  #read_view h5, #read_view p, #icons{
+        position:relative;
+        text-align:center;
+        margin:auto;
+        margin-top: 10px;
+  }
+  #visuel h2{
+    font-size:1.1em;
+  }
+  #visuel h5{
+    font-size:0.8em;
+  }
+  #adminSignalBtn{
+font-size: 0.6em;
 }

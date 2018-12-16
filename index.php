@@ -30,7 +30,6 @@ try {
 	            else {
 					$post = getPost($_GET['id']);
 		    		$comments=get_all_comments();
-		    		$success="<span> Votre commentaire a bien été envoyé </span>";
 		     		require('./view/frontend/post_view.php');
 	            }
 	        }
@@ -67,8 +66,12 @@ try {
 
 	else{
 		/* --------sinon le reste la vue par défault--------------*/
+				
+	
 		$all_posts=get_all_posts();
 		$see_last_ep = getLastPost();
+
+				
 		require('view/frontend/index_view.php');
 	}
 }

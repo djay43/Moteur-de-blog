@@ -8,13 +8,37 @@ class PostManager extends Manager{
 /* --------Fonction récup tous les posts--------------*/
 
     public function all_posts(){
-
+            $limit=2;
             $bdd=$this->base_connect();
-            $sql=$bdd->query('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM posts ORDER BY id DESC LIMIT 1,4'); 
-
-             return $sql;
+            $sql=$bdd->query('SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM posts ORDER BY id DESC'); 
+                    
+            return $sql;
 
     }
+      public function all_posts1(){
+   
+                $cnx=$this->base_connect();
+
+
+                $page = $_GET['page'];
+                $limite = 2;
+
+                // Partie "Requête"
+                /* On calcule donc le numéro du premier enregistrement */
+                $debut = ($page-1) * $limite;
+                /* On ajoute le marqueur pour spécifier le premier enregistrement */
+                $query = 'SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM `posts` ORDER BY id DESC LIMIT :limite OFFSET :debut';
+                $query = $cnx->prepare($query);
+                $query->bindValue('limite', $limite, PDO::PARAM_INT);
+                /* On lie aussi la valeur */
+                $query->bindValue('debut', $debut, PDO::PARAM_INT);
+                $query->execute();
+;      
+                return $query;
+
+
+        }
+
 
     /* --------Fonction recup d'un post--------------*/
 

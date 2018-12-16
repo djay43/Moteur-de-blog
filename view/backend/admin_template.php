@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <title><?= $title ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href=" .\public\css\style.css" rel="stylesheet" />
         <link href=".\public\css\style_admin.css" rel="stylesheet" />
@@ -15,7 +16,7 @@
                                 language_url : './model/tinymce/langs/fr_FR.js',
                                 plugins: "image",
                                 image_title: true,
-                                width : "1000",
+                                width : "100%",
                                 height:"400",
                                 toolbar1: 'undo redo | styleselect | bold italic | link image | ' , 
                                 toolbar2: 'alignleft aligncenter alignright'
@@ -38,27 +39,18 @@
 
     
     <body>
-        
+                    <nav id="tools">
+                        <ul>
+                            <li> <a href=".\admin_index.php?action=create">Nouveau</a></li>
+                            <li>  <a href=".\admin_index.php?action=default">Liste</a></li>
+                            <li>  <a href=".\admin_index.php?action=delete">Supprimer</a></li>
+                        </ul>
+                    </nav>
         
      
-           <div id="tools">
-                <nav>
-                    <ul>
-                        <li> <a href=".\admin_index.php?action=create">Nouveau</a></li>
-                        
-                        <li>  <a href=".\admin_index.php?action=default">Liste</a></li>
-
-                      
-                        <li>  <a href=".\admin_index.php?action=delete">Supprimer</a></li>
-
-
-                        
-                
-                    </ul>
-               
-                </nav>
-           </div>
+           
             <section id="visuel">
+                
                 <?= $admin_content; ?>
             </section>
         

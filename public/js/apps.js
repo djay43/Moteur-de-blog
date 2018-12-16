@@ -11,21 +11,26 @@ function stripHtml(html){
 
 function checkTextArea(){
 
-var myPost=stripHtml(tinyMCE.get('myPost').getContent())
-var myExtract=stripHtml(tinyMCE.get('myExtract').getContent())
+var myExtract=stripHtml(document.getElementById('myExtract').value)
 
-if (myPost.length<2 || myExtract.length<2){
-	console.log (myExtract)
-	alert('Veuillez remplir tous les champs')
-}
-
-if (tinyMCE.get('myExtract').getContent().length>255){
+if (myExtract.length>255){
 		alert('Votre extrait doit comporter moins de 255 caractères')
 
 }
 }
 
 
-$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
+function checkFormComm(){
+	if(document.getElementById('author').value.length<2 ||document.getElementById('comment').value.length<2){
+
+            document.getElementById('error').innerHTML=("<strong>Tous les champs doivent être renseignés!</strong>")// si champ mal renseigné message d'erreur
+            return false
+        }   
+    }
+
+function checkFormNewPost(){
+	if(document.getElementById('myTitle').value.length<2 ||document.getElementById('myExtract').value.length<2 || tinyMCE.get('myPost').getContent().length<2){
+            document.getElementById('error').innerHTML=("<strong>Tous les champs doivent être renseignés!</strong>")// si champ mal renseigné message d'erreur
+            return false
+        }   
+    }

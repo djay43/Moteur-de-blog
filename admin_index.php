@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-require ('model/Auth.php');
-require ('controller/back_control.php');
+require ('src/DAO/Auth.php');
+require ('src/controller/back_control.php');
 
 /* ---------Si identifiant ou mot de passe mauvais, on redirige -------*/
-if  (!Auth::isLogged()){
+if  (!App\src\DAO\Auth::isLogged()){
    
     header ('Location: ./index.php?action=authentificationFailed');
 }
@@ -23,7 +23,7 @@ if(isset($_GET['action'])){
 	/* --------Si action = create, on redirige vers la vue de création--------------*/
 
 	 if ($_GET['action']=="create"){
-	 		require ('view/backend/create_view.php');
+	 		require ('templates/backend/create_view.php');
 
 	 }
 
@@ -32,7 +32,7 @@ if(isset($_GET['action'])){
 
 		if ($_GET['action']=="update" && !empty($_GET['id']) && $_GET['id']>0){
 			$post=getPost($_GET['id']);
-			require('view/backend/update_view.php');
+			require('templates/backend/update_view.php');
 	}
 
 		/* --------Si action = delete, on recup tous les posts et on redirige vers la vue de suppression--------------*/
@@ -40,7 +40,7 @@ if(isset($_GET['action'])){
 	if ($_GET['action']=="delete"){
 			$posts=get_all_posts();
 					
-			require('view/backend/delete_view.php');
+			require('templates/backend/delete_view.php');
 	}
 
 		/* --------Si action = delete_post, on recup tous le ^post sélectionné de via checkbox on supprime et redirige--------------*/
@@ -52,7 +52,7 @@ if(isset($_GET['action'])){
 					}
 					$posts=get_all_posts();
 					$success="<span class=\"success\"> Votre article a bien été supprimé </span>";
-					require('view/backend/delete_view.php');
+					require('templates/backend/delete_view.php');
 				
 			}
 
@@ -60,7 +60,7 @@ if(isset($_GET['action'])){
 					
 					$posts=get_all_posts();
 					$error="<span id=\"error\"> Veuillez sélectionner votre article à supprimer </span>";
-					require('view/backend/delete_view.php');
+					require('templates/backend/delete_view.php');
 				
 			}
 
@@ -80,7 +80,7 @@ if ($_GET['action']=="edit_post" && !empty($_GET['id']) && $_GET['id']>0){
 				$edit=edit($_GET['id'],$_POST['title'],$_POST['post_content'],$_POST['extract']);
 				$post=getPost($_GET['id']);
 				$success="<span class=\"success\"> Votre article a bien été édité </span>";
-				require('view/backend/update_view.php');
+				require('templates/backend/update_view.php');
 		
 	}
 
@@ -92,7 +92,7 @@ if ($_GET['action']=="edit_comment" && !empty($_GET['comm_id']) && $_GET['comm_i
 				$default=defaultAlert($_GET['comm_id']);
 				$post=getPost($_GET['id']);
 				$comments=get_all_comments();
-				 require ('./view/backend/admin_post.php');
+				 require ('./templates/backend/admin_post.php');
 
 
 		
@@ -114,13 +114,13 @@ if ($_GET['action']=="edit_comment" && !empty($_GET['comm_id']) && $_GET['comm_i
 			$posts=get_all_posts();
 			$comments=get_all_comments();
 
-	 		require ('view/backend/admin_default.php');
+	 		require ('templates/backend/admin_default.php');
 	}
 
 }
 else{
 				$posts=get_all_posts();
 				$comments=get_all_comments();
-		 		require ('view/backend/admin_default.php');
+		 		require ('templates/backend/admin_default.php');
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-require('controller/front_control.php');
+require('src/controller/front_control.php');
 
 try {
 
@@ -8,10 +8,9 @@ try {
 
 				/*--------récupération et affichage d'un post -------------*/
 		if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
-    		$post = getPost($_GET['id']);
-    		$comments=get_all_comments();
-     		$title= $post['title'];
-     		require('./view/frontend/post_view.php');
+    		$post = getOnePost($_GET['id']);
+    		$comments=getAllComments();
+     		require('./templates/frontend/singlePost.php');
 
 		}
 
@@ -22,15 +21,15 @@ try {
 	            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
 
 	                new_comment($_GET['id'], $_POST['author'], $_POST['comment']);// on ajoute un commentaire
-	                $post = getPost($_GET['id']);
+	                $post = getOnePost($_GET['id']);
 		    		$comments=get_all_comments();
 		    		$success="<span class=\"success\"> Votre commentaire a bien été envoyé </span>";
-		     		require('./view/frontend/post_view.php');
+		     		require('./templates/frontend/singlePost.php');
 	            }
 	            else {
-					$post = getPost($_GET['id']);
+					$post = getOnePost($_GET['id']);
 		    		$comments=get_all_comments();
-		     		require('./view/frontend/post_view.php');
+		     		require('./templates/frontend/singlePost.php');
 	            }
 	        }
 	        else {
@@ -41,24 +40,24 @@ try {
 
 		if ($_GET['action']=='authentification'){
 
-				require ('view/frontend/authentification.php');
+				require ('templates/frontend/authentification.php');
 			}
 
 		/* --------Si action = authentificationFailed, onenvoi le message d'erreur et on redirige--------------*/
 
 		if ($_GET['action']=='authentificationFailed'){
 				$error="<strong> Identifiant ou mot de passe incorrect</strong>	";
-				require ('view/frontend/authentification.php');
+				require ('templates/frontend/authentification.php');
 		}
 
 		/* --------Si action = alert, on envoi le signalement et on revient au post--------------*/
 
 		if ($_GET['action']=="alert"){
 				alert($_GET['id']); // On signale l'article dans la partie admin
-				$post = getPost($_GET['post_id']);
+				$post = getOnePost($_GET['post_id']);
 		    	$comments=get_all_comments();
 		    	$success="<span class=\"success\"> Le commentaire a bien été signalé </span>";
-		     	require('./view/frontend/post_view.php');
+		     	require('./templates/frontend/singlePost.php');
 
 		}
 
@@ -68,11 +67,11 @@ try {
 		/* --------sinon le reste la vue par défault--------------*/
 				
 	
-		$all_posts=get_all_posts();
+		$all_posts=getAllPosts();
 		$see_last_ep = getLastPost();
 
 				
-		require('view/frontend/index_view.php');
+		require('templates/frontend/home.php');
 	}
 }
 
@@ -81,8 +80,8 @@ try {
 
 catch (Exception $e){
 
-	$all_posts=get_all_posts();
-	require('view/frontend/index_view.php');
+	$all_posts=getAllPosts();
+	require('templates/frontend/home.php');
 }
 
 

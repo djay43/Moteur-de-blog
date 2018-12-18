@@ -2,10 +2,10 @@
 
 <?php
 session_start();
-require ('./src/DAO/Auth.php');
+require ('../src/DAO/Auth.php');
 
 	if  (App\src\DAO\Auth::isLogged()){
-		header ('Location: ./admin_index.php?action=default');
+		header ('Location: ../admin_index.php?action=default');
 	}
 
 	if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
@@ -17,7 +17,7 @@ require ('./src/DAO/Auth.php');
 	   		'password'=> $password);
 	
 
-	   	header ('Location: ./admin_index.php?action=default');
+	   	header ('Location: ../admin_index.php?action=default');
 	   	}
 
 	   	else{

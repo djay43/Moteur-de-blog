@@ -1,6 +1,12 @@
 <?php
 
 
+namespace App\src\controller;
+
+class BackController
+{
+
+}
 /* --------On charge les classes--------------*/
 require ('./src/DAO/ArticleDAO.php');
 require ('./src/DAO/CommentDAO.php');

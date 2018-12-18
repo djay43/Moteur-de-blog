@@ -1,5 +1,7 @@
 
+
 <?php
+
 if (isset($success)){echo $success;}
 
  while  ($myPost=$post->fetch()){
@@ -25,9 +27,8 @@ ob_start(); ?>
                       <p> <?= htmlspecialchars($comment['comment_date_fr']);?></p>
                       <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= htmlspecialchars($comment['post_id']) ?>" onclick="return(confirm('Êtes-vous sûr de vouloir signaler cette entrée?'));"> Signaler</a><br/>
 
-                      <?php }
-  } 
- ?>
+                      <?php }?>
+ 
 
                         
                         <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($myPost['id']) ?>" method="post" onsubmit="return checkFormComm()">
@@ -51,7 +52,9 @@ ob_start(); ?>
            </aside>
         </section>
       
-           
+ 
+ 
           
-<?php $content = ob_get_clean();
+<?php }
+$content = ob_get_clean();
  require('post_template.php'); ?>

@@ -2,7 +2,7 @@
 
 session_start();
 require ('src/DAO/Auth.php');
-require ('src/controller/back_control.php');
+require ('src/controller/BackController.php');
 
 /* ---------Si identifiant ou mot de passe mauvais, on redirige -------*/
 if  (!App\src\DAO\Auth::isLogged()){

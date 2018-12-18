@@ -30,7 +30,7 @@
         <span><img src="./public/img/logo.png" alt="logo"/></span>
         <h1>Administration</h1>
             <nav>
-                <a href="./index.php">Retour au site</a>
+                <a href="./public/index.php">Retour au site</a>
                 <a href="./src/controller/logout.php">Se déconnecter</a>
 
             </nav>

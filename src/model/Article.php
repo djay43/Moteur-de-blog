@@ -61,17 +61,17 @@ class Article
     /*
      * @return mixed
      */
-    public function getAuthor()
+    public function getExtract()
     {
-        return $this->author;
+        return $this->extract;
     }
 
     /*
      * @param mixed $author
      */
-    public function setAuthor($author)
+    public function setExtract($extract)
     {
-        $this->author = $author;
+        $this->extract = $extract;
     }
 
     /*

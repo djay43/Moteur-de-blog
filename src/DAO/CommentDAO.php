@@ -1,6 +1,6 @@
 <?php
 namespace App\src\DAO;
-
+use App\src\model\Comment;
 require_once("DAO.php"); 
 
 
@@ -13,11 +13,24 @@ class CommentDAO extends DAO{
 
             $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr, alert FROM comments ORDER BY id DESC';
             $result = $this->sql($sql);
-            return $result;
-
+            $comments=[];
+            foreach ($result as $row) {
+                $commentId = $row['id'];
+                $comments[$commentId] = $this->buildObject($row);
             }
+            return $comments;
+        }
      
+         private function buildObject(array $row){
 
+        $comment = new Comment();
+        $comment->setId($row['id']);
+        $comment->setPostId($row['post_id']);
+        $comment->setAuthor($row['author']);
+        $comment->setContent($row['comment']);
+        $comment->setDateAdded($row['comment_date_fr']);
+        return $comment;
+    }
     /* --------Fonction récupération d'un commentaire--------------*/
 
  	public function get_comments($post_id){

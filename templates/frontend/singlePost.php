@@ -4,34 +4,32 @@
 
 if (isset($success)){echo $success;}
 
- while  ($myPost=$post->fetch()){
-    $title="Billet pour l'Alaska ".$myPost['title']; 
+        $this->title = $post->getTitle()." - Billets simple pour l'Alaska";
 
-
-ob_start(); ?>
+?>
        <section>
 
            <article id="main_post">
-                <h2><?= htmlspecialchars($myPost['title']);?></h2>                      
-                <p><?= $myPost['post_content']; ?><p>
-                <p>Posté le <?= $myPost['post_date_fr'];?></p> 
+                <h2><?= htmlspecialchars($post->getTitle());?></h2>                      
+                <p><?= $post->getContent(); ?><p>
+                <p>Posté le <?= $post->getDateAdded(); ?></p> 
            </article>
            
            <aside id="comments">
                       <h2>Commentaires</h2>
 
-                          <?php while ($comment=$comments->fetch()){ ?>
+                          <?php foreach($comments as $comment){ ?>
 
-                      <h5> <strong><?= htmlspecialchars($comment['author']);?></strong></h5>
-                      <p> <em><?= htmlspecialchars($comment['comment']);?></em></p>
-                      <p> <?= htmlspecialchars($comment['comment_date_fr']);?></p>
-                      <a href="./index.php?action=alert&id=<?= $comment['id'] ?>&post_id=<?= htmlspecialchars($comment['post_id']) ?>" onclick="return(confirm('Êtes-vous sûr de vouloir signaler cette entrée?'));"> Signaler</a><br/>
+                      <h5> <strong><?= htmlspecialchars($comment->getAuthor());?></strong></h5>
+                      <p> <em><?= htmlspecialchars($comment->getContent());?></em></p>
+                      <p> <?= htmlspecialchars($comment->getDateAdded());;?></p>
+                      <a href="./index.php?action=alert&id=<?= htmlspecialchars($comment->getId()); ?>&post_id=<?= htmlspecialchars($comment->getPostId()); ?>" onclick="return(confirm('Êtes-vous sûr de vouloir signaler cette entrée?'));"> Signaler</a><br/>
 
                       <?php }?>
  
 
                         
-                        <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($myPost['id']) ?>" method="post" onsubmit="return checkFormComm()">
+                        <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($comment->getPostId()); ?>" method="post" onsubmit="return checkFormComm()">
 
                           <div>
                               <br/><br/><label for="author"><strong>Auteur</strong></label><br />
@@ -55,6 +53,3 @@ ob_start(); ?>
  
  
           
-<?php }
-$content = ob_get_clean();
- require('post_template.php'); ?>

@@ -1,5 +1,6 @@
 <?php
 namespace App\src\DAO;
+use App\src\model\Article;
 
 require_once("DAO.php"); 
 
@@ -14,8 +15,12 @@ class ArticleDAO extends DAO{
 
             $sql = 'SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr,extract FROM posts ORDER BY id DESC';
             $result = $this->sql($sql);
-            return $result;
-
+            $posts = [];
+            foreach ($result as $row) {
+                $postId = $row['id'];
+                $posts[$postId] = $this->buildObject($row);
+            }
+        return $posts;
     }
      /* --------Fonction recup d'un post--------------*/
 
@@ -24,9 +29,24 @@ class ArticleDAO extends DAO{
         
             $sql = 'SELECT id,title, post_content, DATE_FORMAT(post_date,\'%d/%m/%Y à %Hh%i\') AS post_date_fr, extract FROM posts WHERE id=?';
             $result = $this->sql($sql,[$postId]);
-            return $result;
-
+            $row = $result->fetch();
+            if($row) {
+                 return $this->buildObject($row);
+            } else {
+                  echo 'Aucun article existant avec cet identifiant';
+            }
      }
+
+    private function buildObject(array $row){
+
+        $article = new Article();
+        $article->setId($row['id']);
+        $article->setTitle($row['title']);
+        $article->setContent($row['post_content']);
+        $article->setExtract($row['extract']);
+        $article->setDateAdded($row['post_date_fr']);
+        return $article;
+    }
 
      /*----test  pagination -----*/
       public function all_posts1(){

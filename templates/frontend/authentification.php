@@ -2,11 +2,11 @@
 
 <?php
 session_start();
-require ('../src/DAO/Auth.php');
 
-	if  (App\src\DAO\Auth::isLogged()){
-		header ('Location: ../admin_index.php?action=default');
-	}
+	// if  (App\src\DAO\Auth::isLogged()===true){
+	// 	header ('Location: ../public/index.php?action=getAuth');
+	// }
+	
 
 	if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
 		extract ($_POST);
@@ -16,8 +16,6 @@ require ('../src/DAO/Auth.php');
 	   		'login'=>$login,
 	   		'password'=> $password);
 	
-
-	   	header ('Location: ../admin_index.php?action=default');
 	   	}
 
 	   	else{
@@ -29,12 +27,12 @@ require ('../src/DAO/Auth.php');
 
  
 
-ob_start(); ?>
+ ?>
 
        <section id="auth">
          
        		<article id="connect">
-                <form action="" method="post"><br/>
+                <form action="../public/index.php?action=getAuth" method="post"><br/>
   				<label><strong>Pseudo</strong></label><br/>
   				<input type="text" name="login" /><br/><br/>
   				<label><strong>Mot de passe</strong></label><br/>
@@ -46,6 +44,3 @@ ob_start(); ?>
         </section>
       
            
-          
-<?php $content = ob_get_clean();
- require('post_template.php'); ?>

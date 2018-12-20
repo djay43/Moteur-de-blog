@@ -2,7 +2,6 @@
 namespace App\src\DAO;
 use App\src\model\Article;
 
-require_once("DAO.php"); 
 
 
 
@@ -36,6 +35,15 @@ class ArticleDAO extends DAO{
                   echo 'Aucun article existant avec cet identifiant';
             }
      }
+
+     public function addPost($post)
+    {
+        //Permet de récupérer les variables $title, $content et $author
+        extract($post);
+
+        $sql = 'INSERT INTO posts (title, post_content, extract, post_date) VALUES (?, ?, ?, NOW())';
+        $this->sql($sql, [$title, $post, $extract]);
+    }
 
     private function buildObject(array $row){
 

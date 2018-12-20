@@ -23,7 +23,7 @@ class FrontController{
 
             $see_last_ep = $this->articleDAO->get_last_post();
             $posts=$this->articleDAO->getPosts();
-            $this->view->render('home', [
+            $this->view->render('home',[
             'posts' => $posts,
             'see_last_ep' => $see_last_ep
         ]);
@@ -36,9 +36,30 @@ class FrontController{
 
             $post = $this->articleDAO->getPost($postId);
             $comments=$this->commentDAO->getComments();
-            $this->view->render('singlePost', [
+            $this->view->render('singlePost',[
                       'post' => $post,
                       'comments' => $comments
+                  ]);
+        }
+        public function adminHome(){
+            $posts=$this->articleDAO->getPosts();
+            $comments=$this->commentDAO->getComments();
+
+          $this->view->adminRender ('admin_default', [
+            'posts' =>$posts,
+            'comments' => $comments
+
+          ]);
+        }
+
+
+        public function auth()
+        {   
+           $posts=$this->articleDAO->getPosts();
+            $comments=$this->commentDAO->getComments();
+           
+            $this->view->render('authentification', [
+                      
                   ]);
         }
 

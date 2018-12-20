@@ -1,7 +1,6 @@
 <?php
 namespace App\src\DAO;
 use App\src\model\Comment;
-require_once("DAO.php"); 
 
 
 /*--------------------Défintion de la classe ----------------*/
@@ -27,7 +26,8 @@ class CommentDAO extends DAO{
         $comment->setId($row['id']);
         $comment->setPostId($row['post_id']);
         $comment->setAuthor($row['author']);
-        $comment->setContent($row['comment']);
+        $comment->setComment($row['comment']);
+        $comment->setAlert($row['alert']);
         $comment->setDateAdded($row['comment_date_fr']);
         return $comment;
     }

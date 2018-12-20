@@ -1,8 +1,10 @@
 
         <?php 
+        session_start();
+
         $this->title = "Jean Forteroche - accueil";
 
-        if (isset($success)){ echo $success;} 
+
         ?>
         
         
@@ -13,10 +15,15 @@
                 <div id="banner">
                         <img src="../public/img/banner.jpg" >                           
                         <article id="main_content" class="col sm-5">
+                                <section id="lastPosts">
+               
+                      <?php
+                      if(isset($_SESSION['add_article'])) {
+                                echo '<p class="success">'.$_SESSION['add_article'].'</p>';
+                                unset($_SESSION['add_article']);
+                            } ?>
 
                                 <h3>Dernière publication:</h3>
-               
-                                
                                 <h5><strong> <?=  htmlspecialchars($see_last_ep['title']);?> </strong></h5>
                                 <p><?=  htmlspecialchars($see_last_ep['extract']); ?></p>
                                 <p>Posté le <?=  htmlspecialchars($see_last_ep['post_date_fr']);?></p>
@@ -25,10 +32,8 @@
                        
 
                 </div>
-
-       <section id="lastPosts">
-               
-      <?php
+<?php
+       
                             foreach ($posts as $post){
 ?>
 

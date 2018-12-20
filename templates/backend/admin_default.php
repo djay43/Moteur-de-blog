@@ -1,13 +1,13 @@
-<?php ob_start();
+<?php 
 $title="Admin - liste des articles";
  ?>
 
 <h2> Liste des posts </h2>
 
 
-<?php	while ($all_comments=$comments->fetch()){ 
+<?php	foreach ($comments as $comment){ 
 
-	if ($all_comments['alert']==1){ ?>
+	if ($comment->getAlert()==1){ ?>
 
 		<span id="alert">
 
@@ -15,12 +15,12 @@ $title="Admin - liste des articles";
 
 			<h5>
 				<?php
-					echo $all_comments['comment'];
+					echo $comment->getComment();
 				?>
 			
 			</h5>
 
-			<a href="./admin_index.php?action=post_view&id=<?= $all_comments['post_id']?>" class="btn btn-warning" id="adminSignalBtn">Modérer le post</a>
+			<a href="./admin_index.php?action=post_view&id=<?= $comment->getPostId() ?>" class="btn btn-warning" id="adminSignalBtn">Modérer le post</a>
 
 		</span>
 
@@ -33,22 +33,18 @@ $title="Admin - liste des articles";
 
 
             
-			while ($all_posts = $posts->fetch()) {      
+			foreach ($posts as $post) {      
 		?>
 
-					<div id="read_view"><h5 id="post_title"><?= strip_tags($all_posts['title']);?></h5><br/>
+					<div id="read_view"><h5 id="post_title"><?= strip_tags($post->getTitle());?></h5><br/>
 
-					<p><?= strip_tags($all_posts['extract']);?></p> <br/>
+					<p><?= strip_tags($post->getExtract());?></p> <br/>
 
-						<span id="icons"><a href="./admin_index.php?action=post_view&id=<?= $all_posts['id']?>"><i class="far fa-eye"></i></a><br/>
-						<a href="./admin_index.php?action=update&id=<?= $all_posts['id']?>"> <i class="fas fa-pen"></i></a>
-						<a href="./admin_index.php?action=delete&id=<?= $all_posts['id']?>"> <i class="fas fa-trash-alt"></i></a></div><br/>
+						<span id="icons"><a href="./admin_index.php?action=post_view&id=<?= $post->getId();?>"><i class="far fa-eye"></i></a><br/>
+						<a href="../public/index.php?action=update&id=<?= $post->getId();?>"> <i class="fas fa-pen"></i></a>
+						<a href="../public/index.php?action=delete&id=<?= $post->getId();?>"> <i class="fas fa-trash-alt"></i></a></div><br/>
 
 					</span>
 	<?php	} ?>
            
-<?php
-$admin_content = ob_get_clean();
-require('admin_template.php');
 
-?>

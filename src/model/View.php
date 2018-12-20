@@ -17,6 +17,16 @@ class View
         ]);
         echo $view;
     }
+    public function adminRender($template, $data = [])
+    {
+        $this->file = '../templates/backend/'.$template.'.php';
+        $adminContent  = $this->renderFile($this->file, $data);
+        $view = $this->renderFile('../templates/backend/baseAdmin.php', [
+            'title' => $this->title,
+            'adminContent' => $adminContent
+        ]);
+        echo $view;
+    }
 
     private function renderFile($file, $data)
     {
@@ -27,6 +37,7 @@ class View
             return ob_get_clean();
         }
         else {
+            echo $file;
             echo 'Fichier inexistant';
         }
     }

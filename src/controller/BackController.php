@@ -1,15 +1,59 @@
 <?php
 
-
 namespace App\src\controller;
+
+use App\src\DAO\ArticleDAO;
+use App\src\DAO\CommentDAO;
+use App\src\DAO\Auth;
+use App\src\model\View;
 
 class BackController
 {
+    private $articleDAO;
+    private $commentDAO;
+	private $view;
+    private $auth;
 
+    public function __construct()
+    {   
+        $this->articleDAO = new ArticleDAO();
+        $this->commentDAO = new CommentDAO();
+        $this->view = new View();
+        $this->auth = new Auth();
+
+    }
+
+    public function addPost($post)
+    {
+        if(isset($post['submit'])) {
+            $articleDAO = new ArticleDAO();
+            $articleDAO->addPost($post);
+            session_start();
+            $_SESSION['add_article'] = 'Le nouvel article a bien été ajouté';
+            header('Location: ../public/index.php');
+        }
+        $this->view->adminRender('create_view', [
+        ]);
+    }
+
+    public function isLogged(){
+
+        if ($this->auth->isLogged()){
+            $posts=$this->articleDAO->getPosts();
+            $comments=$this->commentDAO->getComments();
+           
+        $this->view->adminRender('admin_default', [
+            'posts'=>$posts,
+            'comments'=>$comments
+
+        ]);    
+        }
+        else{
+            header('Location: ../public/index.php?action=authentification');
+        }
+    }
 }
-/* --------On charge les classes--------------*/
-require ('./src/DAO/ArticleDAO.php');
-require ('./src/DAO/CommentDAO.php');
+
 
 
 /* --------Fonction ajout de post--------------*/

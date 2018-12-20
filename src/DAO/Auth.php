@@ -1,6 +1,5 @@
 <?php
 namespace App\src\DAO;
-require_once ('DAO.php');
 /* ----------Vérification de l'authentificaiton--------------*/
 class Auth extends DAO{
 

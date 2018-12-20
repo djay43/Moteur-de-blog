@@ -9,6 +9,8 @@ class Comment
     private $author;
     
     private $comment;
+
+    private $alert;
     
     private $dateAdded;
 
@@ -63,7 +65,7 @@ class Comment
     /*
      * @return mixed
      */
-    public function getContent()
+    public function getComment()
     {
         return $this->comment;
     }
@@ -71,9 +73,24 @@ class Comment
     /*
      * @param mixed $content
      */
-    public function setContent($comment)
+    public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+    /*
+     * @return mixed
+     */
+    public function getAlert()
+    {
+        return $this->alert;
+    }
+
+    /*
+     * @param mixed $content
+     */
+    public function setAlert($alert)
+    {
+        $this->alert = $alert;
     }
 
     /*

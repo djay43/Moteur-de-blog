@@ -1,5 +1,6 @@
 <?php 
 $title="Admin - liste des articles";
+
  ?>
 
 <h2> Liste des posts </h2>
@@ -20,7 +21,7 @@ $title="Admin - liste des articles";
 			
 			</h5>
 
-			<a href="./admin_index.php?action=post_view&id=<?= $comment->getPostId() ?>" class="btn btn-warning" id="adminSignalBtn">Modérer le post</a>
+			<a href="../public/index.php?action=post_view&id=<?= $comment->getPostId() ?>" class="btn btn-warning" id="adminSignalBtn">Modérer le post</a>
 
 		</span>
 
@@ -40,11 +41,11 @@ $title="Admin - liste des articles";
 
 					<p><?= strip_tags($post->getExtract());?></p> <br/>
 
-						<span id="icons"><a href="./admin_index.php?action=post_view&id=<?= $post->getId();?>"><i class="far fa-eye"></i></a><br/>
+						<span id="icons"><a href="../public/index.php?action=post_view&id=<?= $post->getId();?>"><i class="far fa-eye"></i></a><br/>
 						<a href="../public/index.php?action=update&id=<?= $post->getId();?>"> <i class="fas fa-pen"></i></a>
-						<a href="../public/index.php?action=delete&id=<?= $post->getId();?>"> <i class="fas fa-trash-alt"></i></a></div><br/>
+						<a href="../public/index.php?action=delete&id=<?= $post->getId();?>"> <i class="fas fa-trash-alt"></i></a><br/>
 
-					</span>
+					</div>
 	<?php	} ?>
            
 

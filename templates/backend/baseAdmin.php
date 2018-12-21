@@ -40,9 +40,9 @@
     <body>
                     <nav id="tools">
                         <ul>
-                            <li> <a href=".\index.php?action=create">Nouveau</a></li>
-                            <li>  <a href=".\index.php?action=default">Liste</a></li>
-                            <li>  <a href=".\index.php?action=delete">Supprimer</a></li>
+                            <li> <a href="..\public\index.php?action=create">Nouveau</a></li>
+                            <li>  <a href="..\public\index.php?action=default">Liste</a></li>
+                            <li>  <a href="..\public\index.php?action=delete">Supprimer</a></li>
                         </ul>
                     </nav>
         

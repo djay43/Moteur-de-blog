@@ -35,28 +35,18 @@ class FrontController{
         {   
 
             $post = $this->articleDAO->getPost($postId);
-            $comments=$this->commentDAO->getComments();
+            $comments=$this->commentDAO->getComment($postId);
             $this->view->render('singlePost',[
                       'post' => $post,
                       'comments' => $comments
                   ]);
         }
-        public function adminHome(){
-            $posts=$this->articleDAO->getPosts();
-            $comments=$this->commentDAO->getComments();
-
-          $this->view->adminRender ('admin_default', [
-            'posts' =>$posts,
-            'comments' => $comments
-
-          ]);
-        }
+        
+        
 
 
         public function auth()
         {   
-           $posts=$this->articleDAO->getPosts();
-            $comments=$this->commentDAO->getComments();
            
             $this->view->render('authentification', [
                       
@@ -66,19 +56,18 @@ class FrontController{
 
  /* --------Fonction nouveau commentaire--------------*/
 
-       public function addComment($post_id,$author, $comment)
+       public function addComment($postId,$author, $comment)
 
         {
-            $this->commentDAO->post_comment($post_id, $author, $comment);
-
+            $this->commentDAO->newComment($postId, $author, $comment);
 
 
         }
         /* --------Fonction signalement d'un commentaire--------------*/
 
-       public function alert ($post_id){
+       public function signal ($postId){
 
-            $alertPost=$this->commentDAO->alert_comment($post_id);
+            $alertPost=$this->commentDAO->alert($postId);
             return $alertPost;
         }
       

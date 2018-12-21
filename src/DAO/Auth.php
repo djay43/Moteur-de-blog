@@ -16,9 +16,12 @@ class Auth extends DAO{
 
 
 						if ($_SESSION ['auth']['login']===($data['login']) && $_SESSION ['auth']['password']===($data['password'])){
+							$_SESSION ['admin']="connected";
 						return true;
+
 						}
 						else{
+
 							return false;
 						}
 			}

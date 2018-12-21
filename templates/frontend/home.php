@@ -1,9 +1,7 @@
 
         <?php 
-        session_start();
 
         $this->title = "Jean Forteroche - accueil";
-
 
         ?>
         

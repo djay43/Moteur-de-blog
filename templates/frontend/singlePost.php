@@ -1,7 +1,6 @@
 
 
 <?php
-
 if (isset($success)){echo $success;}
 
         $this->title = $post->getTitle()." - Billets simple pour l'Alaska";
@@ -17,19 +16,20 @@ if (isset($success)){echo $success;}
            
            <aside id="comments">
                       <h2>Commentaires</h2>
-
-                          <?php foreach($comments as $comment){ ?>
+                        <?php if (isset($comments)){ 
+                                foreach ($comments as $comment){
+                                  echo $comment->getId();
+                            ?>
 
                       <h5> <strong><?= htmlspecialchars($comment->getAuthor());?></strong></h5>
                       <p> <em><?= htmlspecialchars($comment->getComment());?></em></p>
                       <p> <?= htmlspecialchars($comment->getDateAdded());?></p>
                       <a href="./index.php?action=alert&id=<?= htmlspecialchars($comment->getId()); ?>&post_id=<?= htmlspecialchars($comment->getPostId()); ?>" onclick="return(confirm('Êtes-vous sûr de vouloir signaler cette entrée?'));"> Signaler</a><br/>
 
-                      <?php }?>
- 
+                         <?php  }} ?>
 
                         
-                        <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($comment->getPostId()); ?>" method="post" onsubmit="return checkFormComm()">
+                        <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($post->getId()); ?>#comments" method="post" onsubmit="return checkFormComm()">
 
                           <div>
                               <br/><br/><label for="author"><strong>Auteur</strong></label><br />
@@ -50,6 +50,6 @@ if (isset($success)){echo $success;}
            </aside>
         </section>
       
- 
+
  
           

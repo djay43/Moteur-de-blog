@@ -35,15 +35,15 @@ class Comment
      */
     public function getPostId()
     {
-        return $this->id;
+        return $this->postId;
     }
 
     /*
      * @param mixed $id
      */
-    public function setPostId($id)
+    public function setPostId($postId)
     {
-        $this->id = $id;
+        $this->postId = $postId;
     }
 
     /*

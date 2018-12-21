@@ -33,73 +33,58 @@ class CommentDAO extends DAO{
     }
     /* --------Fonction récupération d'un commentaire--------------*/
 
- 	public function get_comments($post_id){
-        
- 			$bdd=$this->getConnection();
-            $sql=$bdd->prepare ('SELECT id,post_id, author,comment, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr, alert FROM comments WHERE post_id=? ORDER BY comment_date DESC LIMIT 10');
-            $sql->execute (array($post_id));
-            return $sql;
-            
+ 	public function getComment($postId){
 
-     }
+             $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr, alert FROM comments WHERE post_id=? ORDER BY comment_date_fr DESC';
+            $result = $this->sql($sql,[$postId]);
+            $row = $result->fetch();
+            $comments=[];
 
-   
-/* --------Fonction ajout d'un commentaire--------------*/
+            if($row) {
+                  foreach ($result as $row) {
+                  $commentId = $row['id'];
+                  $comments[$commentId] = $this->buildObject($row);
+            }
+            return $comments;
+        }
+    }
 
-
-    public function post_comment($post_id, $author, $comment)
+    public function newComment($postId, $author, $comment)
 
         {
+            $sql='INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())';
+            $this->sql($sql,[$postId,$author,$comment]);       
+       }
+    /* --------Fonction suppression d'un commentaire--------------*/
 
-        	$bdd=$this->getConnection();
-            $sql = $bdd->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-            $find_comments = $sql->execute(array($post_id, $author, $comment));
-            return $find_comments;
+    public function eraseComment ($checkId){
 
-        }
-
-/* --------Fonction edit d'un commentaire--------------*/
-
-     public function edit_comment ($comment_id, $author, $comment){
-
-        $bdd=$this->getConnection();
-        $sql=$bdd->prepare('UPDATE comments SET author=?,comment=? WHERE id=? ');
-        $sql->execute (array($author, $comment, $comment_id));
+            $sql='DELETE FROM `comments` WHERE id=?';
+            $this->sql ($sql,[$checkId]);
     }
-/* --------Fonction suppression de tous les commentaires-------------*/
+    /* --------Fonction suppression de tous les commentaires-------------*/
 
-      public function delete_all_comm ($checkId){
+      public function eraseComments ($checkId){
 
-            $bdd=$this->getConnection();
-            $sql=$bdd->prepare('DELETE FROM `comments` WHERE post_id=?');
-            $sql->execute (array($checkId));
-            return $sql;
+            $sql='DELETE FROM `comments` WHERE post_id=?';
+            $this->sql($sql,[$checkId]);
     }
-/* --------Fonction suppression d'un commentaire--------------*/
+    /* --------Fonction signalement d'un commentaire--------------*/
 
-    public function delete_comm ($checkId){
+    public function alert($postId){
 
-            $bdd=$this->getConnection();
-            $sql=$bdd->prepare('DELETE FROM `comments` WHERE id=?');
-            $sql->execute (array($checkId));
-            return $sql;
+        $sql='UPDATE comments SET alert="1" WHERE id=?';
+        $this->sql ($sql,[$postId]);
     }
-/* --------Fonction signalement d'un commentaire--------------*/
-
-    public function alert_comment($post_id){
-
-        $bdd=$this->getConnection();
-        $sql=$bdd->prepare('UPDATE comments SET alert="1" WHERE id=?');
-        $sql->execute (array($post_id));
-    }
+     
     /* --------Fonction pour enlever le signalement-------------*/
 
-    public function default_alert($post_id){
+    public function initAlert($postId){
 
-        $bdd=$this->getConnection();
-        $sql=$bdd->prepare('UPDATE comments SET alert="0" WHERE id=?');
-        $sql->execute (array($post_id));
+        $sql='UPDATE comments SET alert="0" WHERE id=?';
+        $this->sql($sql,[$postId]);
     }
 
+    
 
 }

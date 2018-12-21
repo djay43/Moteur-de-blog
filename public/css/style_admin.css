@@ -76,13 +76,14 @@ a{
 #tools a:hover{
     color:white;
 }
+
 #read_view{
+    min-height:100px;
     position:relative;
     margin:auto; 
     background:rgba(255,255,255,0.8);
     display:flex;
     padding:10px;
-    margin:auto;
     margin: 10px 0;
 }
 
@@ -111,7 +112,7 @@ a{
 }
 
 #read_view p{
-    margin:0 110px;
+    margin:auto 110px;
 
 }
 #read_view h5{

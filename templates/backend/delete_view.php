@@ -1,4 +1,4 @@
-<?php ob_start();
+<?php 
 $title="Admin - Supprimer article";
 	if (isset($success)){echo $success;}
 	if (isset($error)){echo $error;}
@@ -9,23 +9,18 @@ $title="Admin - Supprimer article";
 
 	<?php 
     
-		while ($all_posts = $posts->fetch()) {      
+		foreach ($posts as $post) {      
 	?>		  
 
-			<form action="./admin_index.php?action=delete_post&id=<?= $all_posts['id']?>" method="post">
+			<form action="../public/index.php?action=delete_post&id=<?= $post->getId();?>" method="post">
 
 			<span id="delete_view">
-				<input type="checkbox" name="postId[]" value="<?= $all_posts['id']?>"> <h5><?= $all_posts['title'];?></h5><br/>
+				<input type="checkbox" name="postId[]" value="<?= $post->getId();?>"> <h5><?= $post->getTitle();?></h5><br/>
 
-					<?= $all_posts['extract'];?> <br/></span>
+					<?= $post->getExtract();?> <br/></span>
 	<?php	} ?>
              			
              	<input type="submit" value="supprimer" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cette entrée?'));">
  			</form>
 
-  <?php
-
-$admin_content = ob_get_clean();
-require('admin_template.php');
-
-?>
+  

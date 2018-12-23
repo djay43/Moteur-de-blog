@@ -7,6 +7,11 @@ use App\src\DAO\CommentDAO;
 use App\src\DAO\Auth;
 use App\src\model\View;
 
+
+/**
+ * Class BackController
+ * @package App\src\controller
+ */
 class BackController
 {
     private $articleDAO;
@@ -14,6 +19,10 @@ class BackController
 	private $view;
     private $auth;
 
+
+    /** ------------------------------------ CONSTRUCTEUR NOUVEAUX OBJETS-----------------------------------------------
+     * BackController constructor.
+     -----------------------------------------------------------------------------------------------------------------*/
     public function __construct()
     {   
         $this->articleDAO = new ArticleDAO();
@@ -23,119 +32,176 @@ class BackController
 
     }
 
+
+    /** ------------------------AFFICHAGE LISTE POSTS ACCUEIL ADMIN ----------------------------------------------------
+     *  Affichage vue par défault admin
+     -----------------------------------------------------------------------------------------------------------------*/
     public function adminHome(){
             $posts=$this->articleDAO->getPosts();
-            $comments=$this->commentDAO->getComments();
+            $comments=$this->commentDAO->getAllComments();
 
           $this->view->adminRender ('admin_default', [
-            'posts' =>$posts,
-            'comments' => $comments
-
-          ]);
+                                    'posts' =>$posts,
+                                    'comments' => $comments]);
     }
 
+    /** ------------------------------- AFFICHAGE SUPPRIMER ------------------------------------------------------------
+     *      Affichage vue de suppression 
+    -----------------------------------------------------------------------------------------------------------------*/
     public function deleteList(){
 
             $posts=$this->articleDAO->getPosts();
-            $this->view->adminRender ('delete_view', [
-            'posts' =>$posts]);
+            $this->view->adminRender ('delete_view', ['posts' =>$posts]);
 
     }
-    /* --------Fonction suppression de post et commentaires--------------*/
 
+    /**------------------------------- SUPPRIME ARTICLE ET COMMENTAIRES ASSOCIÉS----------------------------------------
+     * @param $checkId Suppression des articles sélectionnés via ID renvoyé par checkbox
+     -----------------------------------------------------------------------------------------------------------------*/
     public function delete($checkId){
             
         extract ($checkId);
+        if (isset($postId)){
+            foreach($postId as $value){
 
-        foreach($postId as $value){
             $this->articleDAO->erasePost($value);
             $this->commentDAO->eraseComments($value);
+
+            $_SESSION['delete'] = 'Votre article a bien été supprimé';
+
             $posts=$this->articleDAO->getPosts();
-            $this->view->adminRender ('delete_view', [
-                    'posts' =>$posts,]);
-                }          
+            $this->view->adminRender ('delete_view', ['posts' =>$posts,]);
+            }       
+        }
+        else if (!isset($postId) && isset($_GET['trash'])){
+            $this->articleDAO->erasePost($_GET['id']);
+            $this->commentDAO->eraseComments($_GET['id']);
+            $_SESSION['delete'] = 'Votre article a bien été supprimé';
+            $posts=$this->articleDAO->getPosts();
+            $this->view->adminRender ('delete_view', ['posts' =>$posts,]);
+        }
 
-     }
+        
+        else{
+          $_SESSION['deleteFailed']="Veuillez sélectionner un article à supprimer";
+            $posts=$this->articleDAO->getPosts();
+            $this->view->adminRender ('delete_view', ['posts' =>$posts,]);
+
+        
+        }
+    }
      
-     /* --------Fonction suppression d'un commentaire--------------*/
 
-     public function deleteComm($checkId){
+
+
+
+    /** ------------------------------- SUPPRIME UN COMMENTAIRE --------------------------------------------------------
+     * @param $checkId Suppression d'un commentaire via son ID
+     -----------------------------------------------------------------------------------------------------------------*/
+    public function deleteComm($checkId){
 
         $this->commentDAO->eraseComment($checkId);
+        $_SESSION ['deleteComm'] = 'Votre commentaire a bien été supprimé';
 
      }
 
 
-    public function addPost($post)
-    {
+    /** ------------------------------- NOUVEL ARTICLE -------------------------------------------------------------------
+     * @param $post  $_POST passé en paramètre pour nouvel article
+     -----------------------------------------------------------------------------------------------------------------*/
+    public function addPost($post){
+
         if(isset($post['submit'])) {
-            $articleDAO = new ArticleDAO();
-            $articleDAO->addPost($post);
-            session_start();
+
+            $this->articleDAO->addPost($post);
+
             $_SESSION['add_article'] = 'Le nouvel article a bien été ajouté';
             header('Location: ../public/index.php');
         }
-        $this->view->adminRender('create_view', [
-        ]);
+        
+        $this->view->adminRender('create_view', []);
     }
 
-    public function seePost($postId)
-        {   
+
+    /** ------------------- AFFICHAGE UN ARTICLE ET COMMENTAIRE---------------------------------------------------------
+     * @param $postId Affichage d'un post via son ID
+     -----------------------------------------------------------------------------------------------------------------*/
+    public function seePost($postId){
 
             $posts = $this->articleDAO->getPost($postId);
-            $comments=$this->commentDAO->getComment($postId);
-            $this->view->adminRender('admin_post',[
-                      'posts' => $posts,
-                      'comments' => $comments
-                  ]);
-        }
-    /* --------Fonction edit d'un post--------------*/
+            $comments=$this->commentDAO->getComments($postId);
 
-    public function update ($postId,$post){
+            $this->view->adminRender('admin_post',[
+                                     'posts' => $posts,
+                                     'comments' => $comments]);
+        }
+
+
+
+
+
+
+    /** ----------------------------------- EDITION ARTICLE ------------------------------------------------------------
+     * @param $postId  ID de l'article qu'on veut éditer
+     * @param $post    $_POST passé en paramètre
+     -----------------------------------------------------------------------------------------------------------------*/
+    public function update ($postId, $post){
 
         if (!empty($post)){
+
              $this->articleDAO->editPost($postId, $post);
+             $_SESSION['update'] = 'Votre article a bien été mis à jour';
         }
 
         $posts = $this->articleDAO->getPost($postId);
-        $comments=$this->commentDAO->getComment($postId);
-         $this->view->adminRender('update_view',[
-                'posts' => $posts,
-                'comments' => $comments ]);   
+        $comments=$this->commentDAO->getComments($postId);
+        $this->view->adminRender('update_view',[
+                                 'posts' => $posts,
+                                 'comments' => $comments]);   
         }
 
+
+    /**------------------------------- AUTORISATION COMMENTAIRE -------------------------------------------------------
+     * @param $postId   ID du commentaire à autoriser
+     -----------------------------------------------------------------------------------------------------------------*/
     public function initSignal ($postId){
 
         $alertPost=$this->commentDAO->initAlert($postId);
+        $_SESSION['removeSignal'] = 'Le commentaire a été autorisé';
 
     }
 
+
+    /** ------------------------- RECUP LOGIN MDP / VERIF --------------------------------------------------------------
+     * @param $post  $_POST du formulaire de connexion avec login et mdp
+     -----------------------------------------------------------------------------------------------------------------*/
     public function isLogged($post){
 
         if (isset($_POST) && !empty ($_POST['login']) && !empty($_POST['password'])){
 
                 extract ($post);
-                    $password=sha1($password);
-                    $_SESSION ['auth'] = array(
-                     'login'=>$login,
-                     'password'=> $password);
+                $password=sha1($password); 
+                $_SESSION ['auth'] = array(
+                                    'login'=>$login,
+                                    'password'=> $password);
                             
             }
 
-
         if ($this->auth->isLogged()){
-            $posts=$this->articleDAO->getPosts();
-            $comments=$this->commentDAO->getComments();
-           
-             $this->view->adminRender('admin_default', [
-            'posts'=>$posts,
-            'comments'=>$comments]);    
+
+                $posts=$this->articleDAO->getPosts();
+                $comments=$this->commentDAO->getAllComments();
+
+                $this->view->adminRender('admin_default', [
+                                         'posts'=>$posts,
+                                         'comments'=>$comments]);    
         }
         
         else {
-                $this->view->render('authentification',[
-        ]);           }
-    }
+                $_SESSION['authFailed'] = 'Identifiant ou mot de passe incorrect';
+                $this->view->render('authentification',[]);           
+        }
+    } 
 }
 
 

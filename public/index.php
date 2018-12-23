@@ -9,9 +9,7 @@ $router = new \App\config\Router();
 $backRouter = new \App\config\BackRouter();
 
 $router->run();
-
-
-  	$backRouter->runBack();
+$backRouter->runBack();
 
 
 

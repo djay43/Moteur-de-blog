@@ -1,10 +1,8 @@
 <?php
 
 
-$title="Admin post ".$posts->getTitle();
-  if (isset($success)){
-        echo $success;
-  }
+$this->title="Admin ".$posts->getTitle();
+ 
 ?>
   <h2> <?= $posts->getTitle(); ?> </h2>
 
@@ -15,23 +13,43 @@ $title="Admin post ".$posts->getTitle();
   <h2>Commentaires </h2>
 
 <?php 
-if (isset($comments)){
-foreach($comments as $comment){ ?>
 
-				<form action="../public/index.php?action=edit_comment&id=<?= $comment->getPostId();?>&comm_id=<?= $comment->getId(); ?>" method=post>
+    if (isset($_SESSION['deleteComm'])){
+      echo '<p class=success>'.$_SESSION['deleteComm'].'</p>';
+      unset($_SESSION['deleteComm']);
+    }
+    if (isset($comments)){
+
+      foreach($comments as $comment){ 
+                
+        if ($comment->getAlert()=="1"){?>
+                          <form action="../public/index.php?ad&action=edit_comment&id=<?= $comment->getPostId();?>&comm_id=<?= $comment->getId(); ?>#adminContents" method=post>
+
+                              <article id="adminComments"> 
+                                <h5> <?= $comment->getAuthor();?></h5>
+                                <p><?= $comment->getComment();?> </p>
+                                <p> <?= $comment->getDateAdded();?></p>
+                                <?= "<p id='alertComm'>Ce commentaire a été signalé!</p>";?>
+                                <?= "<input type=\"submit\" class=\"btn btn-warning\" value=\"autoriser\">" ; ?>
+                                <a href="../public/index.php?ad&action=deleteComm&id=<?= $comment-> getPostID();?>&comm_id=<?= $comment->getId();?>#adminComments" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"> <i class="fas fa-trash-alt" id="deleteIcon"></i></a></span>
+                              </article>
+                          </form>
+        <?php          
+        }
+      }
+
+foreach($comments as $comment){ 
+
+?>
+
                     <article id="adminComments"> 
                       <h5> <?= $comment->getAuthor();?></h5>
                       <p><?= $comment->getComment();?> </p>
                       <p> <?= $comment->getDateAdded();?></p>
 
-                          <?php if ($comment->getAlert()=="1"){
-                      	     echo "<p id='alertComm'>Ce commentaire a été signalé!</p>";
-                             echo "<input type=\"submit\" class=\"btn btn-warning\" value=\"autoriser\">" ;                  	
-                           }
-                          ?>                  
-                      <a href="../public/index.php?action=deleteComm&id=<?= $comment-> getPostID();?>&comm_id=<?= $comment->getId();?>" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"> <i class="fas fa-trash-alt" id="deleteIcon"></i></a></span><br/>
+                                         
+                      <a href="../public/index.php?ad&action=deleteComm&id=<?= $comment-> getPostID();?>&comm_id=<?= $comment->getId();?>#adminComments" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"> <i class="fas fa-trash-alt" id="deleteIcon"></i></a></span><br/>
                     </article>
-        </form>
 
 <?php
   }   

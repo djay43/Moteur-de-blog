@@ -2,39 +2,49 @@
 namespace App\src\DAO;
 use PDO;
 
+/**
+ * Class DAO
+ * @package App\src\DAO
+ */
 class DAO {
 
+
     const DB_HOST = 'mysql:host=localhost;dbname=base_alaska;charset=utf8';
+
     const DB_USER = 'root';
+
     const DB_PASS = '';
-	private $connection;
+
+    private $connection;
 
 
-
+    /** ---------------------------- VERIFICATION SI CONNEXION EXISTANTE------------------------------------------------
+     * @return PDO  Si connexion null, on appelle getConnection
+     -----------------------------------------------------------------------------------------------------------------*/
     private function checkConnection()
     {
-        //Vérifie si la connexion est nulle et fait appel à getConnection()
+        
         if($this->connection === null) {
             return $this->getConnection();
         }
-        //Si la connexion existe, elle est renvoyée, inutile de refaire une connexion
         return $this->connection;
     }
 
 
 
 
-    //Méthode de connexion à notre base de données
+
+    /** ---------------------------- CONNEXION BASE DE DONNÉES ---------------------------------------------------------
+     * @return PDO   
+     ---------------------------------------------------------------------------------------------------------------- */
     public static function getConnection()
     {
-        //Tentative de connexion à la base de données
         try{
             $connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            //Renvoi de la connexion
             return $connection;
         }
-            //On lève une erreur si la connexion échoue
+
         catch(Exception $errorConnection)
         {
             die ('Erreur de connexion :'.$errorConnection->getMessage());
@@ -42,9 +52,13 @@ class DAO {
     }
 
 
-    	//Méthode sql ---- Si il y a des paramètres, on appelle prepare, sinon requete query
 
-     protected function sql($sql, $parameters = null)
+    /** ------------- DEFINITION PREPARE OU QUERY SUIVANT PRESENCE PARAMETRE -------------------------------------------
+     * @param $sql                             //requete sql
+     * @param null $pg_parameter_status()      // parametres pour PREPARE
+     * @return bool|false|\PDOStatement        // Si il y a des paramètres, on retourne PREPARE sinon QUERY
+     -----------------------------------------------------------------------------------------------------------------*/
+    protected function sql($sql, $parameters = null)
     {
         if($parameters)
         {
@@ -56,5 +70,45 @@ class DAO {
             $result = $this->checkConnection()->query($sql);
             return $result;
         }
+    }
+/** ----------------------------------- FONCTION PAGINATION ---------------------------------------------------------
+     * @param $table              // table à paginer
+     * @return array $param       // on retourne page courante et nbre posts par page dans un array
+     -----------------------------------------------------------------------------------------------------------------*/
+    protected function paginate($table){
+
+
+            $sql='SELECT COUNT(id) as nbPosts FROM '.$table.' ';
+            $req=$this->sql($sql);
+            $data=$req->fetch();
+
+            $nbPosts=$data['nbPosts']; 
+            $perPage=2;
+            $currentPage=1;
+            $totalPages=ceil($nbPosts/$perPage);
+
+            if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPages){
+                     $_GET['page'] = intval($_GET['page']);
+                            $currentPage = $_GET['page'];
+                            } 
+                            else {
+                                $currentPage = 1;
+                            }
+
+            $_SESSION['paginate']=array();
+            for($i=1;$i<=$totalPages;$i++) {
+                   
+                if($i==$currentPage){
+                    $_SESSION['paginate'][$i]='<span  class="btn btn-light" id="off">'.$i.'</span>';
+                }  
+                else{
+                    $_SESSION['paginate'][$i]='<a href="index.php?page='.$i.'#posts"><span class="btn btn-light">'.$i.'</span></a> ';
+                }
+
+            }
+
+            $param=[$currentPage, $perPage];
+            return $param;
+
     }
 }

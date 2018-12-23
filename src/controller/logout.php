@@ -4,4 +4,4 @@ $_SESSION=array();
 session_destroy();
 header ('Location: ../../public/index.php');
 
-/*on détruit la session--déconnection*/
+// on détruit sessions

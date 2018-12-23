@@ -97,11 +97,17 @@ a{
     }
 
 #delete_view{
-
+        position:relative;
      margin: 10px 0;
     background:grey;
     display:block;
     padding:10px;
+}
+#delete_view a{
+    position:absolute;
+    top:0;
+    right:60px;
+    font-size:1.2em;
 }
 
 #extract{
@@ -165,9 +171,11 @@ margin-left:20px;
 }
 #adminComments{
     background:rgba(255,255,255,0.4);
-    width:80%;
+    width:100%;
     padding:10px;
+    margin:auto;
     margin-bottom:10px;
+
 }
 /*-----------Media queries ----------------*/
 

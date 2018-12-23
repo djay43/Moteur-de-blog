@@ -1,12 +1,19 @@
 <?php 
-$title="Admin - liste des articles";
+$this->title="Admin - liste des articles";
 
  ?>
 
-<h2> Liste des posts </h2>
+<h2> Liste des articles </h2>
 
 
-<?php	foreach ($comments as $comment){ 
+<?php	
+	if (isset($_SESSION['removeSignal'])){
+		echo '<p class="success">'. $_SESSION['removeSignal'].'</p>';
+		unset($_SESSION['removeSignal']);
+	}
+
+
+foreach ($comments as $comment){ 
 
 	if ($comment->getAlert()==1){ ?>
 
@@ -21,7 +28,7 @@ $title="Admin - liste des articles";
 			
 			</h5>
 
-			<a href="../public/index.php?action=post_view&id=<?= $comment->getPostId() ?>" class="btn btn-warning" id="adminSignalBtn">Modérer le post</a>
+			<a href="../public/index.php?ad&action=post_view&id=<?= $comment->getPostId() ?>#adminComments" class="btn btn-warning" id="adminSignalBtn">Modérer le commentaire</a>
 
 		</span>
 
@@ -41,9 +48,9 @@ $title="Admin - liste des articles";
 
 					<p><?= strip_tags($post->getExtract());?></p> <br/>
 
-						<span id="icons"><a href="../public/index.php?action=post_view&id=<?= $post->getId();?>"><i class="far fa-eye"></i></a><br/>
-						<a href="../public/index.php?action=update&id=<?= $post->getId();?>"> <i class="fas fa-pen"></i></a>
-						<a href="../public/index.php?action=delete&id=<?= $post->getId();?>"> <i class="fas fa-trash-alt"></i></a><br/>
+						<span id="icons"><a href="../public/index.php?ad&action=post_view&id=<?= $post->getId();?>"><i class="far fa-eye"></i></a><br/>
+						<a href="../public/index.php?ad&action=update&id=<?= $post->getId();?>"> <i class="fas fa-pen"></i></a>
+						<a href="../public/index.php?ad&action=delete&id=<?= $post->getId();?>"> <i class="fas fa-trash-alt"></i></a><br/>
 
 					</div>
 	<?php	} ?>

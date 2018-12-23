@@ -8,6 +8,10 @@ use App\src\controller\FrontController;
 use App\src\controller\BackController;
 use App\src\controller\ErrorController;
 
+/**
+ * Class BackRouter
+  @package App\config
+ */
 class BackRouter{
 
 	private $frontController;
@@ -15,95 +19,94 @@ class BackRouter{
 	private $errorController;
 
 
-
-	public function __construct()
+    /** -----------------------------------CONSTRUCTEUR-----------------------------------------------------------------
+     * BackRouter constructor.
+     -----------------------------------------------------------------------------------------------------------------*/
+    public function __construct()
     {
         $this->frontController = new FrontController();
         $this->backController = new BackController();
         $this->errorController = new ErrorController();
 
     }
-    
-	public function runBack(){
 
-/* --------Si action = authentification, on va vers la zone de connection--------------*/
+    /**--------------------------------------DEFINITION DES ROUTES------------------------------------------------------
+     *
+     -----------------------------------------------------------------------------------------------------------------*/
+    public function runBack(){
 					
-
-		if(isset($_GET['action'])){
-		 
-
-
-			/* --------Si action = create, on redirige vers la vue de création--------------*/
-
-			 if ($_GET['action']==="create"){
-			 	$this->backController->addPost($_POST);
-			 }
+    	try{
+    		if (isset($_GET['ad'])){
+				if(isset($_GET['action'])){
+				 
+					 if ($_GET['action']==="getAuth" && isset($_POST)){
+					 	$this->backController->isLogged($_POST);         	// authentification
+					 }
 
 
+					 if ($_GET['action']==="create" && isset($_POST)){
+					 	
+					 	$this->backController->addPost($_POST);				//Nouvel article
+					 }
 
-				/* --------Si action = delete, on recup tous les posts et on redirige vers la vue de suppression--------------*/
 
-			if ($_GET['action']=="delete"){
-					
-					$this->backController->deleteList();
-			}
-
-				/* --------Si action = delete_post, on recup tous le ^post sélectionné de via checkbox on supprime et redirige--------------*/
-
-				if ($_GET['action']=="delete_post"){
+					 if ($_GET['action']=="delete"){
 							
-							$this->backController-> delete($_POST);
-		
-					}
+					     $this->backController->deleteList();				// affichage vue de suppression
+					 }
 
+					 if ($_GET['action']=="delete_post" && isset($_POST)){
 
-				/* --------Si action = deleteComm, on recup le comm, le supprime et on redirige vers le post--------------*/
-
-		if ($_GET['action']=="deleteComm" && !empty($_GET['comm_id']) && $_GET['comm_id']>0 && !empty($_GET['id']) && $_GET['id']>0){
-					
-					$this->backController->deleteComm($_GET['comm_id']);
-					$this->backController->seePost($_GET['id']);
+					     $this->backController-> delete($_POST);			// Suppression article et commentaires
 				
-			}
-					/* --------Si action = editPost, on édite et on redirige vers la vue du post--------------*/
+					 }
 
-		if ($_GET['action']=="update" && !empty($_GET['id']) && $_GET['id']>0){
 
-						$this->backController->update($_GET['id'],$_POST);
-					
-				
-			}
 
-					/* --------Si action = edti_comment, on recup le comm et on redirige vers la vue du post--------------*/
-
-		if ($_GET['action']=="edit_comment" && !empty($_GET['comm_id']) && $_GET['comm_id']>0){
-
-						$this->backController->initSignal($_GET['comm_id']);
-						$this->backController-> adminHome();
-			}
-				/* --------Si action = post_view, on récup le post et redirige--------------*/
-
-			if ($_GET['action']=="post_view" && !empty($_GET['id']) && $_GET['id']>0){
-
-				$this->backController->seePost($_GET['id']);				
-			}
-
-			
+					 if ($_GET['action']=="deleteComm" && !empty($_GET['comm_id']) && $_GET['comm_id']>0 && !empty($_GET['id']) && $_GET['id']>0){
+							
+					     $this->backController->deleteComm($_GET['comm_id']);
+					     $this->backController->seePost($_GET['id']);			// Suppression d'un commentaire et réaffichage de l'article
 						
-				/* --------Si action = default, on revient à la page d'accueil--------------*/
+					 }
 
+				     if ($_GET['action']=="update" && !empty($_GET['id']) && $_GET['id']>0 && isset($_POST)){
 
-			 if ($_GET['action']=="default"){
-				$all_posts=  $this->backController->adminHome();
+				         $this->backController->update($_GET['id'],$_POST);		//Mise jour de l'article
+								
+				     }
+
+				     if ($_GET['action']=="edit_comment" && !empty($_GET['comm_id']) && $_GET['comm_id']>0){
+
+								$this->backController->initSignal($_GET['comm_id']);
+								$this->backController-> adminHome();					//authorisation d'un commentaire
+				     }
+
+					  if ($_GET['action']=="post_view" && !empty($_GET['id']) && $_GET['id']>0){
+
+						$this->backController->seePost($_GET['id']);					// Affichage d'un article			
+					  }
+
+					  if ($_GET['action']=="default"){
+						$all_posts=  $this->backController->adminHome();				//Vue par défaut -> liste des posts
+
+					  }
 
 			}
+			else{
 
+			    $all_posts=  $this->frontController->home();		//Si action n'existe pas, retour au front
+			}
+
+			}
+			
 		}
-		else{
-				$all_posts=  $this->frontController->home();
+			catch (Exception $e){
 
+				$all_posts=$frontController->home();				//  récupération erreur et retour au front
 
-		}
+			}
+			
 	}
 
 }

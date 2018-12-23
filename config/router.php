@@ -5,6 +5,10 @@ use App\src\controller\FrontController;
 use App\src\controller\BackController;
 use App\src\controller\ErrorController;
 
+/**
+ * Class Router
+   @package App\config
+ */
 class Router{
 
 	private $frontController;
@@ -12,8 +16,10 @@ class Router{
 	private $errorController;
 
 
-
-	public function __construct()
+    /** -----------------------------------CONSTRUCTEUR-----------------------------------------------------------------
+     * Router constructor.
+    -----------------------------------------------------------------------------------------------------------------*/
+    public function __construct()
     {
         $this->frontController = new FrontController();
         $this->backController = new BackController();
@@ -21,74 +27,63 @@ class Router{
 
     }
 
-	public function run(){
+    /**--------------------------------------DEFINITION DES ROUTES------------------------------------------------------
+     *
+    -----------------------------------------------------------------------------------------------------------------*/
+    public function run(){
 
 			try {
 
 				if (isset($_GET['action'])) {
 
-							/*--------récupération et affichage d'un post -------------*/
 					if ($_GET['action'] == 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
-			    		$this->frontController->singlePost($_GET['id']);
+			    		$this->frontController->singlePost($_GET['id']);							// Affichage d'un post
 					}
 
-				   if ($_GET['action'] == 'new_comment') {
-
+				    if ($_GET['action'] == 'new_comment') {
 				        if (isset($_GET['id']) && $_GET['id'] > 0) {
-				            if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+			            if (strlen($_POST['author'])>2 && strlen($_POST['author'])<15 && strlen($_POST['comment'])>2 && strlen($_POST['comment'])<255) {
 
-				                $this->frontController->addComment($_GET['id'], $_POST['author'], $_POST['comment']);// on ajoute un commentaire
-				                $post = $this->frontController->singlePost($_GET['id']);
+				                $this->frontController->addComment($_GET['id'], $_POST['author'], $_POST['comment']); 
+				                $post = $this->frontController->singlePost($_GET['id']);								//Nouveau commentaire et réaffichage du post
 
 				            }
 				            else {
-								$post = $this->frontController->singlePost($_GET['id']);
+				            	$_SESSION['commentFailed']="Veuillez remplir les champs correctement";
+								$post = $this->frontController->singlePost($_GET['id']);				//Si champs mal remplis message d'erreur 
 				            }
 				        }
 				       
 				    }
-				    		/* --------Si action = authentification, on va vers la zone de connection--------------*/
 
-				
-						if ($_GET['action']=='authentification'){
+				    if ($_GET['action']=='authentification'){
 								
-
-							$this->backController->isLogged($_POST);
-						}
+				        $this->frontController->auth();						//affichage formulaire de connexion
+				    }
 
 			
-					/* --------Si action = alert, on envoi le signalement et on revient au post--------------*/
 
 					if ($_GET['action']=="alert"){
 							$this->frontController->signal($_GET['id']);
-							$post = $this->frontController->singlePost($_GET['post_id']);
+							$post = $this->frontController->singlePost($_GET['post_id']);		// Signaler un commentaire, message succès et affichage de l'article
 
 					}
 
 				}
 
 				else{
-					/* --------sinon le reste la vue par défault--------------*/
-					
-					$frontController = new FrontController();
-					$all_posts=  $frontController->home();
-										}
+
+					$all_posts=$this->frontController->home(); // si pas action retour à l'accueil
+
+				}
+
 			}
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-																//PARTIE ADMIN//
-
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-					/* --------gestion des erreurs afffichage vue par défaut--------------*/
 
 			catch (Exception $e){
-
-
-				$all_posts=$frontController->home();
-
+					echo "Une erreur a été détecté";
+					$all_posts=$this->frontController->home();		// on récupère les erreurs, message d'erreur et redirection vers accueil
 
 			}
 					

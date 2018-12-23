@@ -5,9 +5,6 @@
 
         ?>
         
-        
-
-
     
 
                 <div id="banner">
@@ -22,46 +19,37 @@
                             } ?>
 
                                 <h3>Dernière publication:</h3>
-                                <h5><strong> <?=  htmlspecialchars($see_last_ep['title']);?> </strong></h5>
-                                <p><?=  htmlspecialchars($see_last_ep['extract']); ?></p>
-                                <p>Posté le <?=  htmlspecialchars($see_last_ep['post_date_fr']);?></p>
-                                <p><a href="index.php?action=post&id=<?= htmlspecialchars($see_last_ep['id']); ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>                        
-                            </article>  
+                                <h5><strong> <?=  htmlspecialchars($lastEp->getTitle());?> </strong></h5>
+                                <p><?=  htmlspecialchars($lastEp->getExtract()); ?></p>
+                                <p>Posté le <?=  htmlspecialchars($lastEp->getDateAdded());?></p>
+                                <p><a href="index.php?action=post&id=<?= htmlspecialchars($lastEp->getId()); ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>                        
+                        </article>  
                        
 
                 </div>
-<?php
-       
-                            foreach ($posts as $post){
-?>
+                        <?php
+                            foreach ($posts as $post){ 
 
-                <article class="last_posts">
+                                ?>
+                <section id="posts">
 
-                         <h5> <?=  htmlspecialchars($post->getTitle()); ?> </h5>
-                         <p> <?= htmlspecialchars($post->getExtract()); ?> </p>
-                         <p> <?= htmlspecialchars($post->getDateAdded()); ?> </p>
-                        <p><a href="index.php?action=post&id=<?= htmlspecialchars($post->getId()); ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>
+                    <article class="last_posts">
 
-
-                </article>
+                             <h5> <?=  htmlspecialchars($post->getTitle()); ?> </h5>
+                             <p> <?= htmlspecialchars($post->getExtract()); ?> </p>
+                             <p> <?= htmlspecialchars($post->getDateAdded()); ?> </p>
+                            <p><a href="index.php?action=post&id=<?= htmlspecialchars($post->getId()); ?>"><button type="button" class="btn btn-success">Lire plus</button></a></p>
 
 
-                
-                <?php } 
+                    </article>
 
-                if (!empty($_GET['page']) && $_GET['page']>0 && is_numeric($_GET['page'])){
-                $page = ($_GET['page']);
-                } 
-                else {
+                    <div id="pagination">
 
-                $page=1;
-                    }         ?>
+                    <?php } 
+                            foreach($_SESSION['paginate'] as $row){
+                                        echo $row;
+                            }
+                    ?>
+                    </div>
 
-
-                <a href="?page=<?php echo $page - 1; ?>#lastPosts">Page précédente</a>
-                —
-                <a href="?page=<?php echo $page + 1; ?>#lastPosts">Page suivante</a>
-                
-               
-            
-        
+                </section>

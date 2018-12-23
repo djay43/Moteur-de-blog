@@ -1,10 +1,18 @@
 <?php
 namespace App\src\DAO;
 /* ----------Vérification de l'authentificaiton--------------*/
+
+/**
+ * Class Auth
+ * @package App\src\DAO
+ */
 class Auth extends DAO{
 
 
-		static function isLogged(){
+    /**---------------------------- VERIFICATION LOGIN MDP ADMIN ----------------------------------------------
+     * @return bool    True si connecté, false sinon
+     ----------------------------------------------------------------------------------------------------------*/
+    static function isLogged(){
 
 
 			if (isset($_SESSION['auth']) && isset($_SESSION['auth']['login']) && isset($_SESSION['auth']['password'])) {
@@ -21,7 +29,7 @@ class Auth extends DAO{
 
 						}
 						else{
-
+							
 							return false;
 						}
 			}

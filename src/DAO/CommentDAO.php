@@ -35,7 +35,7 @@ class CommentDAO extends DAO{
      -----------------------------------------------------------------------------------------------------------------*/
     public function getAllComments(){
 
-            $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr, alert FROM comments ';
+            $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr, alert FROM comments ORDER BY id DESC';
             $result = $this->sql($sql);
             $comments = [];
             foreach ($result as $row) {
@@ -52,21 +52,18 @@ class CommentDAO extends DAO{
      -----------------------------------------------------------------------------------------------------------------*/
     public function getComments($postId){
             
-            $sql = 'SELECT id, post_id, author, comment, alert, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id=? ORDER BY id DESC LIMIT 0,5';
+            $sql = 'SELECT id, post_id, author, comment, alert, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id=? ORDER BY id DESC';
             
             $result = $this->sql($sql,[$postId]);
-            $row = $result->fetch();
             $comments=[];
 
-            if($row) {
-
-                foreach ($result as $row) {
-                $commentId = $row['id'];
-                $comments[$commentId] = $this->buildObject($row);
+            foreach ($result as $row) {
+            $commentId = $row['id'];
+            $comments[$commentId] = $this->buildObject($row);
             }
 
             return $comments;
-        }
+        
     }
 
 

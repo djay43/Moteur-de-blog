@@ -51,6 +51,7 @@ class FrontController{
 
             $post = $this->articleDAO->getPost($postId);
             $comments=$this->commentDAO->getComments($postId);
+            
             $this->view->render('singlePost',[
                                 'post' => $post,
                                 'comments' => $comments]);

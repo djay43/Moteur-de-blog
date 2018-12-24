@@ -1,7 +1,6 @@
 
 
 <?php
-if (isset($success)){echo $success;}
 
         $this->title = $post->getTitle()." - Billets simple pour l'Alaska";
 
@@ -49,9 +48,10 @@ if (isset($success)){echo $success;}
                         }
 
 
-                        if (isset($comments)){ 
+                        if (isset($comments)){
                                 foreach ($comments as $comment){
                             ?>
+
                       <h5> <strong><?= htmlspecialchars($comment->getAuthor());?></strong></h5>
                       <p> <em><?= htmlspecialchars($comment->getComment());?></em></p>
                       <p> <?= htmlspecialchars($comment->getDateAdded());?></p>

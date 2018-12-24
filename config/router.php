@@ -45,7 +45,7 @@ class Router{
 			            if (strlen($_POST['author'])>2 && strlen($_POST['author'])<15 && strlen($_POST['comment'])>2 && strlen($_POST['comment'])<255) {
 
 				                $this->frontController->addComment($_GET['id'], $_POST['author'], $_POST['comment']); 
-				                $post = $this->frontController->singlePost($_GET['id']);								//Nouveau commentaire et réaffichage du post
+				                $this->frontController->singlePost($_GET['id']);								//Nouveau commentaire et réaffichage du post
 
 				            }
 				            else {

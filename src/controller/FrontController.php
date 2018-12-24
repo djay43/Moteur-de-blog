@@ -76,6 +76,7 @@ class FrontController{
 
             $this->commentDAO->newComment($postId, $author, $comment);
             $_SESSION['sendComment']='Votre commentaire a bien été envoyé';
+            
         }
 
     /** -----------------------------------SIGNALEMENT D'UN COMMENTAIRE-------------------------------------------------

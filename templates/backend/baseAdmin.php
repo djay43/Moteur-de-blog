@@ -54,7 +54,7 @@
             </section>
         
       
-<script src="./public/js/apps.js"></script>
+<script src="../public/js/apps.js"></script>
         
 </body>
     

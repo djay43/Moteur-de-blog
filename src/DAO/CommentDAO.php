@@ -52,7 +52,7 @@ class CommentDAO extends DAO{
      -----------------------------------------------------------------------------------------------------------------*/
     public function getComments($postId){
             
-            $sql = 'SELECT id, post_id, author, comment, alert,DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id=? ORDER BY id DESC ';
+            $sql = 'SELECT id, post_id, author, comment, alert, DATE_FORMAT(comment_date,\'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE post_id=? ORDER BY id DESC LIMIT 0,5';
             
             $result = $this->sql($sql,[$postId]);
             $row = $result->fetch();

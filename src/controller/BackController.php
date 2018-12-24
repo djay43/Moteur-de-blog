@@ -112,13 +112,17 @@ class BackController
     public function addPost($post){
 
         if(isset($post['submit'])) {
+            if ( strlen($post['title'])>2 && strlen($post['content'])>2 && strlen($post['extract'])>2){
 
             $this->articleDAO->addPost($post);
 
             $_SESSION['add_article'] = 'Le nouvel article a bien été ajouté';
             header('Location: ../public/index.php');
+            }
+            else  {
+            $_SESSION['createFailed']="Veuillez remplir correctement les champs";
+            }
         }
-        
         $this->view->adminRender('create_view', []);
     }
 
@@ -147,10 +151,16 @@ class BackController
      -----------------------------------------------------------------------------------------------------------------*/
     public function update ($postId, $post){
 
-        if (!empty($post)){
-
+        if (isset($post['submit'])){
+            if(strlen($_POST['title'])>2 && strlen($_POST['content'])>2 && strlen($_POST['extract'])>2){
              $this->articleDAO->editPost($postId, $post);
              $_SESSION['update'] = 'Votre article a bien été mis à jour';
+            }
+            else{
+                $_SESSION['updateFailed'] = "Veuillez remplir les champs correctement";
+
+
+            }
         }
 
         $posts = $this->articleDAO->getPost($postId);

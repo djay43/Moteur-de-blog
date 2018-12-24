@@ -52,13 +52,14 @@ if (isset($success)){echo $success;}
                         if (isset($comments)){ 
                                 foreach ($comments as $comment){
                             ?>
-
                       <h5> <strong><?= htmlspecialchars($comment->getAuthor());?></strong></h5>
                       <p> <em><?= htmlspecialchars($comment->getComment());?></em></p>
                       <p> <?= htmlspecialchars($comment->getDateAdded());?></p>
                       <a href="./index.php?action=alert&id=<?= htmlspecialchars($comment->getId()); ?>&post_id=<?= htmlspecialchars($comment->getPostId()); ?> #comments" onclick="return(confirm('Êtes-vous sûr de vouloir signaler cette entrée?'));"> Signaler</a><br/>
 
-                         <?php  }} ?>
+                         <?php  }
+                        } 
+                        ?>
 
                         
  

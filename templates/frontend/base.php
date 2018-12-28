@@ -7,6 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href="../public/css/style.css" rel="stylesheet" />
+        <link href="../public/css/footer.css" rel="stylesheet" />
+
      
 
 
@@ -36,4 +38,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
+
+  <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <h3>Jean Forteroche</h3>
+
+                <p class="footer-links">
+                    <a href="../public/index.php">Accueil</a>
+                    ·
+                    <a href="../public/index.php?action=authentification">Connexion</a>
+                    ·
+       
+                </p>
+
+                <p class="footer-company-name">Jérémy Guillemot &copy; 2018</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>Escluzels</span> 43580 Monistrol d'Allier, France</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+00 00 00 00 00</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:support@company.com">forteroche@gmail.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>Jean Forteroche, écrivain</span>
+                    Suivez-moi sur les réseaux sociaux, et restez informés de mes dernières actualités!
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="http://www.facebook.fr"><i class="fab fa-facebook"></i></a>
+                    <a href="http://www.twitter.fr"><i class="fab fa-twitter"></i></a>
+                    <a href="www.linkedin.fr"><i class="fab fa-linkedin"></i></a>
+
+                </div>
+
+            </div>
+
+        </footer>
 </html>

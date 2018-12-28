@@ -18,7 +18,7 @@
                     <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($post->getId()); ?>#comments" method="post" onsubmit="return checkFormComm()">
 
                               <br/><label for="author"><h5>Auteur</h5></label><br />
-                              <input type="text" id="author" name="author" class="form-control" id="usr" /><br/>
+                              <input type="text" id="author" name="author" class="form-control" id="usr" required/><br/>
 
                               <h5>Commentaire</h5>
                               <textarea id="comment" name="comment" cols="20" rows="2" class="form-control"></textarea><br/><br/>

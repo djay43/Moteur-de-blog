@@ -13,6 +13,7 @@ function checkTextArea(){
 
 var myExtract=stripHtml(document.getElementById('myExtract').value)
 
+
 if (myExtract.length>255){
 		alert('Votre extrait doit comporter moins de 255 caractères')
 

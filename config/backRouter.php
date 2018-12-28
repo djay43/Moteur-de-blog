@@ -82,11 +82,17 @@ class BackRouter{
 								$this->backController-> adminHome();					//authorisation d'un commentaire
 				     }
 
-					  if ($_GET['action']=="post_view" && !empty($_GET['id']) && $_GET['id']>0){
+					  if ($_GET['action']=="post_view"){
+					  	if(!empty($_GET['id']) && $_GET['id']>0){
+						$this->backController->seePost($_GET['id']);
+						}					// Affichage d'un article
+						else if (isset($_POST['select'])) {
+								
+							$this->backController->seePost($_POST['select']); //affichage article via liste
 
-						$this->backController->seePost($_GET['id']);					// Affichage d'un article			
+						}			
 					  }
-
+				
 					  if ($_GET['action']=="default"){
 						$all_posts=  $this->backController->adminHome();				//Vue par défaut -> liste des posts
 

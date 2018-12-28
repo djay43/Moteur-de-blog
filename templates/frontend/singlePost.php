@@ -2,7 +2,7 @@
 
 <?php
 
-        $this->title = $post->getTitle()." - Billets simple pour l'Alaska";
+  $this->title = $post->getTitle()." - Billets simple pour l'Alaska";
 
 ?>
        <section>
@@ -18,13 +18,15 @@
                     <form action="index.php?action=new_comment&amp;id=<?= htmlspecialchars($post->getId()); ?>#comments" method="post" onsubmit="return checkFormComm()">
 
                               <br/><label for="author"><h5>Auteur</h5></label><br />
-                              <input type="text" id="author" name="author"  /><br/>
+                              <input type="text" id="author" name="author" class="form-control" id="usr" /><br/>
 
                               <h5>Commentaire</h5>
-                              <textarea id="comment" name="comment" cols="20" rows="2"></textarea><br/><br/>
+                              <textarea id="comment" name="comment" cols="20" rows="2" class="form-control"></textarea><br/><br/>
 
                                 <input type="submit" class="btn btn-info" id="sendComment" >
                                 <p id="error"></p>
+
+                                
                                 <?php
                                 if (isset($_SESSION['commentFailed'])){ 
                                   echo '<p id="error">'.$_SESSION['commentFailed'].'</p>';

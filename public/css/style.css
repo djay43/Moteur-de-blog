@@ -207,6 +207,13 @@ header a:hover{
 color:red!important;
 font-weight:bold!important;
 }
+#author{
+    width:40%;
+    margin:auto;
+}
+#comment{
+    margin:auto;
+}
 
 
 

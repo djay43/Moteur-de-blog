@@ -5,7 +5,20 @@ $this->title="Admin - liste des articles";
 
 <h2> Liste des articles </h2>
 
+		<form action="../public/index.php?ad&action=post_view" method="post">
+			<select name="select" class="custom-select" id="inputGroupSelect01">
+				<?php
+					foreach($posts as $post){
 
+							echo "<option value=".$post->getId().">".$post->getTitle()."</option>";
+
+
+					}
+
+				?>
+			</select>	
+			<input type="submit" class="btn btn-info" value="Aller">
+		</form>
 <?php	
 	if (isset($_SESSION['removeSignal'])){
 		echo '<p class="success">'. $_SESSION['removeSignal'].'</p>';
@@ -38,11 +51,9 @@ foreach ($comments as $comment){
 
 
 
-
-
-            
 			foreach ($posts as $post) {      
 		?>
+
 
 					<div id="read_view"><h5 id="post_title"><?= strip_tags($post->getTitle());?></h5><br/>
 

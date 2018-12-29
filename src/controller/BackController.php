@@ -142,9 +142,6 @@ class BackController
 
 
 
-
-
-
     /** ----------------------------------- EDITION ARTICLE ------------------------------------------------------------
      * @param $postId  ID de l'article qu'on veut éditer
      * @param $post    $_POST passé en paramètre
@@ -152,7 +149,8 @@ class BackController
     public function update ($postId, $post){
 
         if (isset($post['submit'])){
-            if(strlen($_POST['title'])>2 && strlen($_POST['content'])>2 && strlen($_POST['extract'])>2){
+            
+            if(strlen($_POST['title'])>2 && strlen($_POST['postContent'])>2 && strlen($_POST['extract'])>2){
              $this->articleDAO->editPost($postId, $post);
              $_SESSION['update'] = 'Votre article a bien été mis à jour';
             }

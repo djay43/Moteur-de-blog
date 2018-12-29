@@ -1,14 +1,11 @@
 
 
 #comments{
-    
-    
     width:40%;
     padding:20px;
     background-color:aliceblue; 
     margin:auto;
-    margin-top:30px;
-    
+    margin-top:30px;    
 }
 
 #main_content > form{

@@ -21,11 +21,6 @@ html, body{
     font-family:georgia;
 }
 
-#main_wrap{
-
-    margin: auto 5%;
-}
-
 
 header{
    
@@ -98,7 +93,7 @@ header a:hover{
 
 /*--------------------------Ban // title ----------------------------*/
 
-
+/*banniere*/
 #banner img{
     position:absolute;
     top:0;
@@ -116,7 +111,7 @@ header a:hover{
     position:relative;
 
 }
-
+/*Billet simple pour l'alaska*/
 #subtitle{
     position:absolute;
     left:0;
@@ -130,7 +125,7 @@ header a:hover{
     padding:15px;
     border-top: solid 2px white;
 }
-
+/*Derniere actu*/
 #main_content{
     width:60%;
     background-color:rgba(255,255,255,0.8);
@@ -148,34 +143,12 @@ header a:hover{
 #main_content:hover, .last_post:hover{
     background-color:rgba(255,255,255,0.9);
 }
-#welcome{
-    position:absolute;
-    z-index:20;
-    top:0;
-    width: 300px;
-    height:200px;
-    background-color:rgba(255,255,255,0.8);
-
-}
-
-#ban_btn{
-        position:absolute;
-        bottom:20px;
-        right:100px;
-        z-index: 20;
-
-}
-/*----------Les chapitres----------------*/
-
-#infos{
-    width:400px;
-    height:500px;
-    margin-right: 30px;
-    margin-top:80px;
-    background:white;
-}
 
 
+
+/*----------Les épisodes----------------*/
+
+/*Derniers posts*/
 .last_posts{
     margin:auto;
     margin-top:20px;
@@ -188,41 +161,33 @@ header a:hover{
 
     
 }
-#posts{
-    display: flex;
-    flex-flow: column
+/*Pagination*/
+#pagi{
+    display:flex;
 }
+
 #pagination{
-        margin:auto;
+    margin:auto;
 }
 #pagination span{
     margin:5px;
 }
+/*onglet actif*/
 #off{
 color:red!important;
 font-weight:bold!important;
 }
-#author{
-    width:40%;
-    margin:auto;
-}
-#comment{
-    margin:auto;
-}
+
 
 
 
 /*----------- Post view----------------------*/
 
 
-
+/*article principal*/
 #main_post{
-
-
-     width:90%;
+    width:90%;
     background-color:rgba(255,255,255,0.8);
-    
-    z-index:20;
     bottom:0;
     left:0;
     padding:40px;
@@ -230,7 +195,7 @@ font-weight:bold!important;
     margin-top:80px;
     border-radius:20px;
 }
-
+/*commentaires*/
 #comments{
 
     background-color:rgba(255,255,255,0.8);
@@ -248,17 +213,29 @@ font-weight:bold!important;
     margin-top:20px;
 }
 
+/*Formulaire*/
+#author{
+    width:40%;
+    margin:auto;
+}
+
 #comment{
     width:90%;
     height:200px;
     padding:5px;
+    margin:auto;
+
 }
+
+
+/*-----------------Authentification --------------------*/
 #auth{
     display:flex;
 }
 #auth input{
     text-align:center;
 }
+/*Form connection*/
 #connect{
     text-align: center;
     width:500px;
@@ -271,10 +248,7 @@ font-weight:bold!important;
     margin-top :100px;
     border-radius:20px;
 }
-
-
-
-
+/*-------------------------Message succès ou erreur*/
 .success{
     display:block;
     width:100%;
@@ -294,17 +268,17 @@ font-weight:bold!important;
 
 @media screen and (max-width: 750px) {
    
-    #subtitle{
-        font-size:1em;
-    }
+  #subtitle{
+    font-size:1em;
+  }
+  /*Derniere actu*/
   #main_content {
     width:90%;
     font-size:0.8em;
     padding:10px;
     left:10px;
     margin:0;
-    margin-top:10px;
-   
+    margin-top:10px;  
   }
   #main_content h3{
     font-size:1.4em;

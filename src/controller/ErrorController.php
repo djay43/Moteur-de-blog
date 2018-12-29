@@ -6,11 +6,14 @@ class ErrorController
 {
     public function unknown()
     {
-        require '../templates/unknown.php';
+        echo "Ce fichier est inconnu";
+        header ('Location: ../../public/index.php');
     }
 
     public function error()
     {
-        require '../templates/error.php';
+        echo "Une erreur est survenue";
+        header ('Location: ../../public/index.php');
+
     }
 }

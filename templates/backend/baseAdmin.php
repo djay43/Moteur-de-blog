@@ -21,8 +21,6 @@
                                 toolbar2: 'alignleft aligncenter alignright'
                                    });
         </script>
-   	    
-
     </head>
 
     <header>
@@ -30,33 +28,27 @@
         <h1>Administration</h1>
             <nav>
                 <a href="../public/index.php">Retour au site</a>
-                <a href="../src/controller/logout.php">Se déconnecter</a>
-
+                <a href="../templates/backend/logout.php">Se déconnecter</a>
             </nav>
-
     </header>
 
-    
     <body>
-                    <nav id="tools">
-                        <ul>
-                            <li> <a href="..\public\index.php?ad&action=create">Nouveau</a></li>
-                            <li>  <a href="..\public\index.php?ad&action=default">Liste</a></li>
-                            <li>  <a href="..\public\index.php?ad&action=delete">Supprimer</a></li>
-                        </ul>
-                    </nav>
-        
-     
-           
-            <section id="visuel">
-                
+        <nav id="tools">
+            <ul>
+                <li><a href="..\public\index.php?ad&action=create">Nouveau</a></li>
+                <li><a href="..\public\index.php?ad&action=default">Liste</a></li>
+                <li><a href="..\public\index.php?ad&action=delete">Supprimer</a></li>
+            </ul>
+        </nav>
+
+        <section id="visuel">
+
                 <?= $adminContent; ?>
-            </section>
+
+        </section>
         
       
-<script src="../public/js/apps.js"></script>
+        <script src="../public/js/apps.js"></script>
         
-</body>
-    
-
+    </body>
 </html>

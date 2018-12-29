@@ -1,3 +1,6 @@
+footer{
+width:100%;
+}
 .footer-distributed{
 	background-color: #292c2f;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -17,13 +20,13 @@
 	vertical-align: top;
 }
 
-/* Footer left */
+/* Footer gauche */
 
 .footer-distributed .footer-left{
 	width: 40%;
 }
 
-/* The company logo */
+/* Jean Forteroche */
 
 .footer-distributed h3{
 	color:  #ffffff;
@@ -35,7 +38,7 @@
 	color:  #5383d3;
 }
 
-/* Footer links */
+/* Footer liens */
 
 .footer-distributed .footer-links{
 	color:  #ffffff;
@@ -57,7 +60,7 @@
 	margin: 0;
 }
 
-/* Footer Center */
+/* Footer infos contact */
 
 .footer-distributed .footer-center{
 	width: 35%;
@@ -101,7 +104,7 @@
 }
 
 
-/* Footer Right */
+/* Footer droite */
 
 .footer-distributed .footer-right{
 	width: 20%;
@@ -144,7 +147,6 @@
 	margin-bottom: 5px;
 }
 
-/* If you don't want the footer to be responsive, remove these media queries */
 
 @media (max-width: 880px) {
 

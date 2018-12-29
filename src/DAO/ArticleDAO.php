@@ -99,6 +99,7 @@ class ArticleDAO extends DAO{
     }
 
      
+     
 
     /** ----------------------------SUPPRESSION POSTS ET COMMENTAIRES----------------------------------------------
      * @param $checkId ID du post sélectionné par checkbox

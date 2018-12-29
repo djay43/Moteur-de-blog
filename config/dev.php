@@ -1,5 +1,8 @@
 <?php
 
-	const DB_HOST = 'mysql:host=localhost;dbname=base_alaska;charset=utf8';
-    const DB_USER = 'root';
-    const DB_PASS = '';
+	const HOST = 'localhost';
+	const DB_NAME = 'base_alaska';
+	const CHARSET = 'utf8';
+	const DB_HOST = 'mysql:host='.HOST.';dbname='.DB_NAME.';charset='.CHARSET;
+	const DB_USER = 'root';
+	const DB_PASS = '';
